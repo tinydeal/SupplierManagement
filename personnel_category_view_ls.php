@@ -52,7 +52,7 @@ $array_personnel_category=$personnel_category_service->listAll($pageCurrent,$pag
     <?php 
     foreach ($array_personnel_category as $personnel_category){
     	echo "<tr> 
-    	<td>$personnel_category->category_name</td>  
+    	<td>$personnel_category->personnel_category_name</td>  
         <td>$personnel_category->permission_name</td>
        <td><a class='btn btn-primary' href='./index.php?mod=personnel_category&action=edit_get&eid=".$personnel_category->id."'>修改</a></td>
       </tr>";

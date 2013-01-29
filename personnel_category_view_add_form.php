@@ -11,9 +11,9 @@ require_once 'class/code_names.class.php';
 <div class="div-form">
 <form class="form-horizontal" action="./index.php?mod=personnel_category&action=add_post" method="post">
   <div class="control-group">
-    <label class="control-label" for="category_name">人员类别名称</label>
+    <label class="control-label" for="personnel_category_name">人员类别名称</label>
     <div class="controls">
-      <input type="text" id="category_name" placeholder="" name="category_name" required>
+      <input type="text" id="personnel_category_name" placeholder="" name="personnel_category_name" required>
     </div>
   </div>
   <div class="control-group">
@@ -25,7 +25,7 @@ require_once 'class/code_names.class.php';
               <option value="<?=CodeNames::$permission_name_administrator?>">管理员</option>
             </select>
     </div>
-  </div>
+  </div> 
   <div class="control-group">
     <div class="controls">
       <button type="submit" class="btn btn-primary">添加</button>

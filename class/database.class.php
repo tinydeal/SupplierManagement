@@ -110,7 +110,7 @@ final class Database {
 	* 作用:获取当前库的所有表名
 	* 返回:当前库的所有表名
 	* 类型:数组
-	*********************************************/
+	*********************************************/ 
 	public function getTablesName() {
 		self::$stmt = self::$DB->query('SHOW TABLES FROM '.self::$dbname);
 		self::getErrInfo();

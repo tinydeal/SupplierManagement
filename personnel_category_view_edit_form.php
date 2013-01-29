@@ -6,7 +6,7 @@
 require_once 'class/code_names.class.php';
 $personnel_category=unserialize($_SESSION['personnel_category']);
 $id=$personnel_category->id;
-$category_name=$personnel_category->category_name;
+$personnel_category_name=$personnel_category->personnel_category_name; 
 $permission_name=$personnel_category->permission_name;
 unset($_SESSION["personnel_category"]);
 $_SESSION['id']=$id; 
@@ -16,9 +16,9 @@ $_SESSION['id']=$id;
 <div class="div-form">
 <form class="form-horizontal" action="./index.php?mod=personnel_category&action=edit_post" method="post">
   <div class="control-group">
-    <label class="control-label" for="category_name">人员类别名称</label>
+    <label class="control-label" for="personnel_category_name">人员类别名称</label>
     <div class="controls">
-      <input type="text" id="category_name" placeholder="" name="category_name" required>
+      <input type="text" id="personnel_category_name" placeholder="" name="personnel_category_name" required>
     </div>
   </div>
   <div class="control-group">
@@ -53,7 +53,7 @@ $_SESSION['id']=$id;
                             return $(this).is(":visible");
                         }
                     });
-  				$('#category_name').val("<?=$category_name?>");
+  				$('#personnel_category_name').val("<?=$personnel_category_name?>");
                 $('#permission_name').val("<?=$permission_name?>");
                     
                      } );

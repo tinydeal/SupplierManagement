@@ -17,9 +17,9 @@ class PersonnelCategoryService{
 	}
 	
 	public function addPersonnelCategory($personnel_category){
-		$category_name=$personnel_category->_get('category_name');
+		$personnel_category_name=$personnel_category->_get('personnel_category_name');
 		$permission_name=$personnel_category->_get('permission_name');
-		$sql=sprintf("insert into t_personnel_category (category_name,permission_name) values ('%s','%s')",$category_name,$permission_name);
+		$sql=sprintf("insert  into  t_personnel_category  (personnel_category_name,permission_name)  values ('%s','%s')",$personnel_category_name,$permission_name);
 		return $this->g_db->Execute($sql);
 	}
 	
@@ -30,9 +30,9 @@ class PersonnelCategoryService{
 	
 	public function updatePersonnelCategory($personnel_category){
 		$id=$personnel_category->_get('id');
-		$category_name=$personnel_category->_get('category_name');
+		$personnel_category_name=$personnel_category->_get('personnel_category_name');
 		$permission_name=$personnel_category->_get('permission_name');
-		$sql=sprintf("update t_personnel_category set category_name='%s',permission_name='%s' where id=%d",$category_name,$permission_name,$id);
+		$sql=sprintf("update t_personnel_category set personnel_category_name='%s',permission_name='%s' where id=%d",$personnel_category_name,$permission_name,$id);
 		return $this->g_db->Execute($sql);
 	}
 
