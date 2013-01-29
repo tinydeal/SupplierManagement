@@ -27,5 +27,13 @@ class PersonnelCategoryService{
 		$sql=sprintf("select * from personnel_category where id=%d",$id);
 		return $this->g_db->getOne($sql);
 	}
+	
+	public function updatePersonnelCategory($personnel_category){
+		$id=$personnel_category->_get('id');
+		$category_name=$personnel_category->_get('category_name');
+		$permission_name=$personnel_category->_get('permission_name');
+		$sql=sprintf("update personnel_category set category_name='%s',permission_name='%s' where id=%d",$category_name,$permission_name,$id);
+		return $this->g_db->Execute($sql);
+	}
 
 }

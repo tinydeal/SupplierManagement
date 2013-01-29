@@ -44,6 +44,7 @@ if(isset($_SESSION["operation"])){
 	        <strong>".$operation_msg."</strong>
 	        </div>";
 	unset($_SESSION["operation"]);
+	unset($_SESSION["operation_msg"]);
 	
 }
 

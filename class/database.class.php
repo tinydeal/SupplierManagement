@@ -142,10 +142,12 @@ final class Database {
 		if (self::$debug) {
 			echo $sql.'<br />';
 		}
+		$sql=$sql." order by id desc";
 		if(isset($pageCurrent)){
 			$sql=$sql." LIMIT ".($pageCurrent - 1)*$PageSize." , ".$PageSize;
 		}
 		$result = array();
+		
 		self::$stmt = self::$DB->query($sql);
 		self::getErrInfo();
 		self::$querycount++;

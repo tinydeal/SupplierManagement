@@ -8,7 +8,8 @@ $personnel_category=unserialize($_SESSION['personnel_category']);
 $id=$personnel_category->id;
 $category_name=$personnel_category->category_name;
 $permission_name=$personnel_category->permission_name;
-session_unregister("personnel_category");
+unset($_SESSION["personnel_category"]);
+$_SESSION['id']=$id; 
 ?>
 <h3>修改人员类别</h3>
 <hr class="bs-docs-separator">

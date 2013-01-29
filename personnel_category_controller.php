@@ -20,7 +20,7 @@ if(isset($_GET['action'])){
 			$personnel_category=new PersonnelCategory(null,$category_name ,$permission_name );
 			$personnel_category_service=new PersonnelCategoryService();
 			$personnel_category_service->addPersonnelCategory($personnel_category);
-			session_start();
+			
 			$_SESSION['operation']=true;
 			$_SESSION['operation_msg']="添加人员类别:".$category_name."成功";
 			
@@ -45,6 +45,25 @@ if(isset($_GET['action'])){
 			}
 			break;
 		case 'edit_post':
+			if(isset($_SESSION["id"])){
+				require_once './class/personnel_category_service.class.php';
+				require_once 'class/personnel_category.class.php';				
+				$id=$_SESSION["id"];
+				unset($_SESSION["id"]);
+				$category_name=$_POST['category_name'];
+				$permission_name=$_POST['permission_name'];
+				$personnel_category=new PersonnelCategory($id,$category_name,$permission_name);
+				$personnel_category_service=new PersonnelCategoryService();
+				$personnel_category_service->updatePersonnelCategory($personnel_category);
+				
+				$_SESSION['operation']=true;
+				$_SESSION['operation_msg']="修改人员类别:".$category_name."成功";				
+			}else{
+				$_SESSION['operation']=false;
+				$_SESSION['operation_msg']="修改人员类别:".$category_name."失败";
+				
+			}
+			header("Location: ./index.php?mod=personnel_category&action=ls");
 				
 		default:
 			break;			
