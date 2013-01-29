@@ -6,25 +6,25 @@ class PersonnelCategoryService{
 		require_once './class/database.class.php';
 		$this->g_db=Database::getInstance();
 	}
-	public  function listAll($pageCurrent,$PageSize,$sql="select * from personnel_category"){
+	public  function listAll($pageCurrent,$PageSize,$sql="select * from t_personnel_category"){
 
 		$array_personnel_category=$this->g_db->getAll($sql,$pageCurrent,$PageSize);
 		return $array_personnel_category;
 	}
 	
-	public function getListRows($sql="select count(*) from personnel_category"){
+	public function getListRows($sql="select count(*) from t_personnel_category"){
 		return $this->g_db->getRows($sql);
 	}
 	
 	public function addPersonnelCategory($personnel_category){
 		$category_name=$personnel_category->_get('category_name');
 		$permission_name=$personnel_category->_get('permission_name');
-		$sql=sprintf("insert into personnel_category (category_name,permission_name) values ('%s','%s')",$category_name,$permission_name);
+		$sql=sprintf("insert into t_personnel_category (category_name,permission_name) values ('%s','%s')",$category_name,$permission_name);
 		return $this->g_db->Execute($sql);
 	}
 	
 	public function getPersonnelCategoryById($id){
-		$sql=sprintf("select * from personnel_category where id=%d",$id);
+		$sql=sprintf("select * from t_personnel_category where id=%d",$id);
 		return $this->g_db->getOne($sql);
 	}
 	
@@ -32,7 +32,7 @@ class PersonnelCategoryService{
 		$id=$personnel_category->_get('id');
 		$category_name=$personnel_category->_get('category_name');
 		$permission_name=$personnel_category->_get('permission_name');
-		$sql=sprintf("update personnel_category set category_name='%s',permission_name='%s' where id=%d",$category_name,$permission_name,$id);
+		$sql=sprintf("update t_personnel_category set category_name='%s',permission_name='%s' where id=%d",$category_name,$permission_name,$id);
 		return $this->g_db->Execute($sql);
 	}
 
