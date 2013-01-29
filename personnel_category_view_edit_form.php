@@ -8,11 +8,12 @@ $personnel_category=unserialize($_SESSION['personnel_category']);
 $id=$personnel_category->id;
 $category_name=$personnel_category->category_name;
 $permission_name=$personnel_category->permission_name;
+session_unregister("personnel_category");
 ?>
 <h3>修改人员类别</h3>
 <hr class="bs-docs-separator">
 <div class="div-form">
-<form class="form-horizontal" action="./index.php?mod=personnel_category&action=add_post" method="post">
+<form class="form-horizontal" action="./index.php?mod=personnel_category&action=edit_post" method="post">
   <div class="control-group">
     <label class="control-label" for="category_name">人员类别名称</label>
     <div class="controls">

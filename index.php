@@ -43,7 +43,7 @@ if(isset($_SESSION["operation"])){
 	        <button type='button' class='close' data-dismiss='alert' >&times;</button>
 	        <strong>".$operation_msg."</strong>
 	        </div>";
-	session_unset($_SESSION["operation"]);
+	unset($_SESSION["operation"]);
 	
 }
 

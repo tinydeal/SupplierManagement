@@ -44,6 +44,8 @@ if(isset($_GET['action'])){
 				header("Location: ./index.php?mod=personnel_category&action=ls");
 			}
 			break;
+		case 'edit_post':
+				
 		default:
 			break;			
 	}

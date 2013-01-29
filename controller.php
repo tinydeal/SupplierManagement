@@ -3,6 +3,7 @@
  * @auther lion
  * @date 2013-1-26
  */
+
 if(isset($_GET['mod'])){
 	$mod=$_GET['mod'];
 	switch ($mod){
