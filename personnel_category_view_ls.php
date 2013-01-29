@@ -5,13 +5,25 @@
  */
 require_once 'class/personnel_category_service.class.php';
 require_once 'class/personnel_category.class.php';
+require_once 'class/sub_pages.class.php';
+
+if(isset($_GET["p"]))
+	$pageCurrent=$_GET["p"];  
+else
+  	$pageCurrent=1; 
+//每页显示的条数  
+$page_size=10;   	
 $personnel_category_service=new PersonnelCategoryService();
-$array_personnel_category=$personnel_category_service->listAll();
+//总条目数 
+$nums=$personnel_category_service->getListRows();
+//每次显示的页数  
+$sub_pages=10;  
+$array_personnel_category=$personnel_category_service->listAll($pageCurrent,$page_size);
 ?>
 
 
 <div class="search-form">
-<form class="form-inline" >
+<form class="form-inline" action="./index.php?mod=personnel_category&action=ls" method="get">
   <input type="text" class="search-query">
   <button type="submit" class="btn">搜索</button>
 </form>
@@ -39,10 +51,10 @@ $array_personnel_category=$personnel_category_service->listAll();
     <tbody>
     <?php 
     foreach ($array_personnel_category as $personnel_category){
-    	echo "<tr>
-    	<td>$personnel_category->category_name</td> 
+    	echo "<tr> 
+    	<td>$personnel_category->category_name</td>  
         <td>$personnel_category->permission_name</td>
-       <td><a type='button' class='btn btn-primary' herf='./index.php?mod=personnel_category&action=edit_get'>修改</a></td>
+       <td><a class='btn btn-primary' href='./index.php?mod=personnel_category&action=edit_get&eid=".$personnel_category->id."'>修改</a></td>
       </tr>";
     }
     
@@ -51,4 +63,7 @@ $array_personnel_category=$personnel_category_service->listAll();
       
     </tbody>
   </table>
+  <?php    
+	  $subPages=new SubPages($page_size,$nums,$pageCurrent,$sub_pages,"index.php?mod=personnel_category&action=ls&p=");
+  ?>
 </div>

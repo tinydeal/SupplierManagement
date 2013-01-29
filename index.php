@@ -23,11 +23,32 @@ require_once './includes/top.php';
 <div class="container-fluid">
 <div class="row-fluid">
 <div class="span2">
+
 	  <!--Sidebar content-->
       <?php require_once './includes/sidebar.php';?>
     </div>
 <div class="span10">
+<div class="operation">
+<?php 
+session_start();
+if(isset($_SESSION["operation"])){
+	$operation_msg=$_SESSION["operation_msg"];
+	$flag;
+	if ($_SESSION["operation"]){
+		$flag="success";
+	}else {
+		$flag="error";
+	}
+	echo "<div class='alert fade in alert-".$flag."'>
+	        <button type='button' class='close' data-dismiss='alert' >&times;</button>
+	        <strong>".$operation_msg."</strong>
+	        </div>";
+	session_unset($_SESSION["operation"]);
+	
+}
 
+?>
+</div>
 <!--Body content-->
  <?php require_once './controller.php';?>
 </div>

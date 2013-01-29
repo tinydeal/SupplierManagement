@@ -138,9 +138,12 @@ final class Database {
 	* 类型:数组
 	* 参数:select * from table
 	*********************************************/
-	public function getAll($sql, $type=PDO::FETCH_OBJ) {
+	public function getAll($sql,$pageCurrent,$PageSize, $type=PDO::FETCH_OBJ) {
 		if (self::$debug) {
 			echo $sql.'<br />';
+		}
+		if(isset($pageCurrent)){
+			$sql=$sql." LIMIT ".($pageCurrent - 1)*$PageSize." , ".$PageSize;
 		}
 		$result = array();
 		self::$stmt = self::$DB->query($sql);
@@ -157,7 +160,7 @@ final class Database {
 	* 类型:数组
 	* 参数:select * from table where id='1'
 	*********************************************/
-	public function getOne($sql, $type=PDO::FETCH_ASSOC) {
+	public function getOne($sql, $type=PDO::FETCH_OBJ) {
 		if (self::$debug) {
 			echo $sql.'<br />';
 		}
