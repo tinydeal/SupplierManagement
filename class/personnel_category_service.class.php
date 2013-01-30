@@ -35,5 +35,15 @@ class PersonnelCategoryService{
 		$sql=sprintf("update t_personnel_category set personnel_category_name='%s',permission_name='%s' where id=%d",$personnel_category_name,$permission_name,$id);
 		return $this->g_db->Execute($sql);
 	}
+	
+	public  function listAllByKeywords($pageCurrent,$PageSize,$keywords,$sql="select * from t_personnel_category where concat (personnel_category_name , permission_name ) like "){
+		$sql=sprintf($sql." '%s' ","%".$keywords."%");
+		$array_personnel_category=$this->g_db->getAll($sql,$pageCurrent,$PageSize);
+		return $array_personnel_category;
+	}
+	public  function getListRowsByKeywords($keywords,$sql="select count(*) from t_personnel_category where concat (personnel_category_name , permission_name ) like "){
+		$sql=sprintf($sql." '%s' ","%".$keywords."%");
+		return $this->g_db->getRows($sql); 
+	}
 
 }

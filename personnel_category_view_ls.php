@@ -12,19 +12,34 @@ if(isset($_GET["p"]))
 else
   	$pageCurrent=1; 
 //每页显示的条数  
-$page_size=4;   	
+$page_size=10;   	
 $personnel_category_service=new PersonnelCategoryService();
 //总条目数 
-$nums=$personnel_category_service->getListRows();
+
 //每次显示的页数  
-$sub_pages=2;  
+$sub_pages=10;
+
+$url="index.php?mod=personnel_category&action=ls&p=";
+if(isset($_GET["keywords"])){
+		$keywords=$_GET["keywords"];
+		$array_personnel_category=$personnel_category_service->listAllByKeywords($pageCurrent,$page_size,$keywords);
+		$nums=$personnel_category_service->getListRowsByKeywords($keywords);
+		if(!empty($keywords)){
+			$url="index.php?mod=personnel_category&action=ls&keywords=$keywords&p=";
+		}
+}else{
 $array_personnel_category=$personnel_category_service->listAll($pageCurrent,$page_size);
+$nums=$personnel_category_service->getListRows();
+}
 ?>
 
 
 <div class="search-form">
-<form class="form-inline" action="./index.php?mod=personnel_category&action=ls" method="get">
-  <input type="text" class="search-query">
+<form class="form-inline" action="./index.php" method="get">
+   
+  <input type="hidden" class="search-query" name="mod" value="personnel_category">
+  <input type="hidden" class="search-query" name="action" value="ls">
+  <input type="text" class="search-query" name="keywords" id="keywords">
   <button type="submit" class="btn">搜索</button>
 </form>
 </div>
@@ -63,7 +78,14 @@ $array_personnel_category=$personnel_category_service->listAll($pageCurrent,$pag
       
     </tbody>
   </table>
-  <?php    
-	  $subPages=new SubPages($page_size,$nums,$pageCurrent,$sub_pages,"index.php?mod=personnel_category&action=ls&p=");
+  <?php
+	  $subPages=new SubPages($page_size,$nums,$pageCurrent,$sub_pages,$url);
   ?>
 </div>
+
+<script>
+  $(function () {
+  				$('#keywords').val("<?=$personnel_category_name?>");
+                    
+                     } );
+</script>

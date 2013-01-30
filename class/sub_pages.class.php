@@ -52,18 +52,7 @@ class SubPages{
     unset($this->subPage_type);  
    }  
      
-  /* 
-    show_SubPages函数用在构造函数里面。而且用来判断显示什么样子的分页   
-   */ 
-  function show_SubPages($subPage_type){  
-    if($subPage_type == 1){  
-    $this->subPageCss1();  
-    }elseif ($subPage_type == 2){  
-    $this->subPageCss2();  
-    } elseif ($subPage_type == 3){  
-    $this->subPageCss3();  
-    }  
-   }  
+
      
      
   /* 
@@ -89,7 +78,7 @@ class SubPages{
      }  
     }else{  
     $current_array=$this->initArray();  
-     if($this->current_page <= 3){  
+     if($this->current_page <= 2){  
       for($i=0;$i<count($current_array);$i++){  
       $current_array[$i]=$i+1;  
       }  
@@ -99,7 +88,7 @@ class SubPages{
       }  
      }else{  
       for($i=0;$i<count($current_array);$i++){  
-      $current_array[$i]=$this->current_page-2+$i;  
+      $current_array[$i]=$this->current_page-1+$i;
       }  
      }  
     }  
@@ -142,5 +131,6 @@ class SubPages{
     }
     echo "</ul></div>";
    }
+
 }  
 ?>
