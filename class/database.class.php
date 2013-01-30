@@ -31,7 +31,7 @@ final class Database {
 		self::$dbport = 3306;
 		self::$dbname = "supplier_management";
 		self::$dbuser = "root";
-		self::$dbpass = "123456";
+		self::$dbpass = "";
 		self::connect();
 	}
 

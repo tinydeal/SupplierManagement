@@ -12,12 +12,12 @@ if(isset($_GET["p"]))
 else
   	$pageCurrent=1; 
 //每页显示的条数  
-$page_size=10;   	
+$page_size=4;   	
 $personnel_category_service=new PersonnelCategoryService();
 //总条目数 
 $nums=$personnel_category_service->getListRows();
 //每次显示的页数  
-$sub_pages=10;  
+$sub_pages=2;  
 $array_personnel_category=$personnel_category_service->listAll($pageCurrent,$page_size);
 ?>
 
