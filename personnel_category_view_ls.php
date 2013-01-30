@@ -17,7 +17,7 @@ $personnel_category_service=new PersonnelCategoryService();
 //总条目数 
 
 //每次显示的页数  
-$sub_pages=10;
+$sub_pages=10; 
 
 $url="index.php?mod=personnel_category&action=ls&p=";
 if(isset($_GET["keywords"])){
@@ -85,7 +85,6 @@ $nums=$personnel_category_service->getListRows();
 
 <script>
   $(function () {
-  				$('#keywords').val("<?=$personnel_category_name?>");
-                    
+  				$('#keywords').val("<?=$_GET["keywords"]?>");
                      } );
 </script>
