@@ -9,9 +9,6 @@ if(isset($_GET['action'])){
 		case 'ls':
 			require_once './log_view_ls.php';
 			break;		
-		case 'query':
-			require_once './log_view_query.php';
-			break;
 		default:
 			break;			
 	}

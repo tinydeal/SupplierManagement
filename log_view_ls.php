@@ -18,13 +18,27 @@ $log_service=new LogService();
 $nums=$log_service->getListRows();
 //每次显示的页数  
 $sub_pages=10;  
+$url="index.php?mod=log&action=ls&p=";
+if(isset($_GET["keywords"])){
+    $keywords=$_GET["keywords"];
+    $array_log=$log_service->listAllByKeywords($pageCurrent,$page_size,$keywords);
+    $nums=$log_service->getListRowsByKeywords($keywords);
+    if(!empty($keywords)){
+      $url="index.php?mod=log&action=ls&keywords=$keywords&p=";
+    }
+}else{
 $array_log=$log_service->listAll($pageCurrent,$page_size);
+$nums=$log_service->getListRows();
+}
 ?>
 
 
 <div class="search-form">
-<form class="form-inline" action="./index.php?mod=personnel_category&action=ls" method="get">
-  <input type="text" class="search-query">
+<form class="form-inline" action="./index.php" method="get">
+   
+  <input type="hidden" class="search-query" name="mod" value="log">
+  <input type="hidden" class="search-query" name="action" value="ls">
+  <input type="text" class="search-query" name="keywords" id="keywords">
   <button type="submit" class="btn">搜索</button>
 </form>
 </div>
@@ -63,7 +77,12 @@ $array_log=$log_service->listAll($pageCurrent,$page_size);
       
     </tbody>
   </table>
-  <?php    
-	  $subPages=new SubPages($page_size,$nums,$pageCurrent,$sub_pages,"index.php?mod=log&action=ls&p=");
+  <?php
+    $subPages=new SubPages($page_size,$nums,$pageCurrent,$sub_pages,$url);
   ?>
 </div>
+<script>
+  $(function () {
+          $('#keywords').val("<?=$_GET["keywords"]?>");
+                     } );
+</script>

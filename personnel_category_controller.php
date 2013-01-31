@@ -3,6 +3,8 @@
  * @auther
  * @date 2013 1-26
  */
+require_once './class/log_service.class.php';
+$log_service=new LogService();
 if(isset($_GET['action'])){
 	$action=$_GET['action'];
 	switch ($action){
@@ -14,7 +16,8 @@ if(isset($_GET['action'])){
 			break;
 		case 'add_post':
 			require_once './class/personnel_category_service.class.php';
-			require_once 'class/personnel_category.class.php';
+			require_once 'class/personnel_category.class.php';			
+			
 			$personnel_category_name=$_POST['personnel_category_name']; 
 			$permission_name=$_POST['permission_name'];
 			$personnel_category=new PersonnelCategory(null,$personnel_category_name ,$permission_name );
@@ -23,7 +26,7 @@ if(isset($_GET['action'])){
 			
 			$_SESSION['operation']=true;
 			$_SESSION['operation_msg']="添加人员类别:".$personnel_category_name."成功";
-			
+			$log_service->addLog("insert","用户",null);
 			header("Location: ./index.php?mod=personnel_category&action=ls");
 			break;	
 		case 'edit_get':
