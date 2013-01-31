@@ -60,7 +60,8 @@ if(isset($_GET['action'])){
 				$personnel_category_service->updatePersonnelCategory($personnel_category);
 				
 				$_SESSION['operation']=true;
-				$_SESSION['operation_msg']="修改人员类别:".$personnel_category_name."成功";				
+				$_SESSION['operation_msg']="修改人员类别:".$personnel_category_name."成功";	
+				$log_service->addLog("update","用户",$id);			
 			}else{
 				$_SESSION['operation']=false;
 				$_SESSION['operation_msg']="修改人员类别:".$personnel_category_name."失败";
