@@ -11,32 +11,34 @@ if(isset($_GET['action'])){
 			break;
 		case 'user_validate':
 		    if(!imageCodeCheck()){
-	    	echo '111';
 	    	$_SESSION['image_code_error']=true;
-	    	$url="./index.php";
+	    	$url="./login.php";
+	    	echo $_SESSION['image_code_error'];
 	    }else{
-	    	
-	    	$name=trim($_POST['name']);
-		$pwd=md5(trim($_POST['pwd']));
-		$user=new User(null,$name,$pwd);
-		$rs=UserController::validateUser($user);
+	    require_once 'class/user.class.php';
+	    require_once 'class/user_service.class.php';	
+	    $username=trim($_POST['username']);
+//		$pwd=md5(trim($_POST['pwd']));
+		$pwd=trim($_POST['pwd']);
+		$user=new User(null,null,null,null,$username,$pwd,null,null,null,null);
+		$user_service=new UserService();
+		$rs=$user_service->validateUser($user);
 		if(!$rs){
-			$url="./index.php";
+			$url="./login.php";
 			$_SESSION['error']=true;
 				}else{
-					$url="./success.php";
-	
-					$_SESSION['name']=$name;
+					$url="./index.php";
+					$_SESSION['username']=$username;
 			if(isset($_POST['auto_login'])){
-	
 					$auto_login=$_POST['auto_login'];
  			echo $auto_login;
-  				  	setcookie("name",$name,time()+3600);
-    		    	setcookie("pwd",$pwd,time()+3600);
+  				  	setcookie("name",$username,time()+36000);
+    		    	setcookie("pwd",$pwd,time()+36000);
 			}
 	
 			}
 	   	 }
+	   	 header("Location: $url");
 			break;
 		case 'user_login_post':
 //			require_once './class/personnel_category_service.class.php';
@@ -101,8 +103,7 @@ if(isset($_GET['action'])){
 function imageCodeCheck(){
 	$input_image_code=$_POST['input_image_code'];
 	$image_code=$_SESSION['$image_code'];
-	
-	if(strcmp($input_image_code , $image_code)==0){
+	if(strcasecmp($input_image_code , $image_code)==0){
 		return true;
 	}else return false;
 }
