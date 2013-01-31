@@ -9,6 +9,8 @@ private $g_db;
 		require_once './class/user.class.php';
 		require_once './class/database.class.php';
 		require_once './class/personnel_category_service.class.php';
+		require_once 'class/code_names.class.php';
+
 		$this->g_db=Database::getInstance();
 	}
 	public  function listAll($pageCurrent,$PageSize,$sql="select * from t_user"){
@@ -30,10 +32,18 @@ private $g_db;
 	}
 	
 	public function addUser($user){
-		$personnel_category_name=$user->_get('personnel_category_name');
-		$permission_name=$user->_get('permission_name');
-		$sql=sprintf("insert  into  t_personnel_category  (personnel_category_name,permission_name)  values ('%s','%s')",$personnel_category_name,$permission_name);
-		return $this->g_db->Execute($sql);
+		
+		$name=$user->_get("name");
+	  	$category_name_id=$user->_get("category_name_id");
+		$username=$user->_get("username");
+  		$pwd=$user->_get("pwd");
+  		$telephone=$user->_get("telephone");
+  		$email=$user->_get("email");
+  		$state=CodeNames::$user_state_disable;
+		$sql=sprintf("insert  into  t_user  (name,category_name_id,username,pwd,telephone,email,state)  values ('%s','%s','%s','%s','%s','%s','%s')",$name,$category_name_id,$username,$pwd,$telephone,$email,$state);
+		$this->g_db->Execute($sql);
+		
+		return $this->g_db->getLastId();
 	}
 	
 	public function getUserById($id){
@@ -75,6 +85,16 @@ private $g_db;
 		return true;
 		else 
 		return false;
+	}
+	public function checkUsername($user){
+		$username=$user->_get("username");
+		$sql=sprintf("select count(*) from t_user where username='%s' ",$username);
+		if($this->g_db->getRows($sql) > 0){
+		return false;
+		}
+		else{ 
+		return true;
+		}
 	}
 }
 ?>

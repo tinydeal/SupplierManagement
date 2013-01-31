@@ -3,6 +3,8 @@
  * @auther lion
  * @data 2013-1-30
  */
+require_once './class/log_service.class.php';
+$log_service=new LogService();
 if(isset($_GET['action'])){
 	$action=$_GET['action'];
 	switch ($action){
@@ -12,35 +14,45 @@ if(isset($_GET['action'])){
 		case 'user_validate':
 		    if(!imageCodeCheck()){
 	    	$_SESSION['image_code_error']=true;
-	    	$url="./login.php";
 	    	echo $_SESSION['image_code_error'];
-	    }else{
-	    require_once 'class/user.class.php';
-	    require_once 'class/user_service.class.php';	
-	    $username=trim($_POST['username']);
-//		$pwd=md5(trim($_POST['pwd']));
-		$pwd=trim($_POST['pwd']);
-		$user=new User(null,null,null,null,$username,$pwd,null,null,null,null);
-		$user_service=new UserService();
-		$rs=$user_service->validateUser($user);
-		if(!$rs){
-			$url="./login.php";
-			$_SESSION['error']=true;
-				}else{
-					$url="./index.php";
-					$_SESSION['username']=$username;
+	    	$url="./login.php";
+	   		}else{
+	   		require_once 'class/user.class.php';
+	  		require_once 'class/user_service.class.php';	
+	  		$username=trim($_POST['username']);
+//			$pwd=md5(trim($_POST['pwd']));
+			$pwd=trim($_POST['pwd']);
+			$user=new User(null,null,null,null,$username,$pwd,null,null,null,null);
+			$user_service=new UserService();
+			$rs=$user_service->validateUser($user);
+			if(!$rs){
+				$url="./login.php";
+				$_SESSION['error']=true;
+			}else{
+				$url="./index.php";
+				$_SESSION['username']=$username;
 			if(isset($_POST['auto_login'])){
 					$auto_login=$_POST['auto_login'];
  			echo $auto_login;
-  				  	setcookie("name",$username,time()+36000);
+  				  	setcookie("username",$username,time()+36000);
     		    	setcookie("pwd",$pwd,time()+36000);
-			}
-	
-			}
-	   	 }
-	   	 header("Location: $url");
+				}
+				}
+	  	 	 }
+	   	 	header("Location: $url");
 			break;
-		case 'user_login_post':
+		case 'user_register':
+			require_once 'class/user.class.php';
+	  		require_once 'class/user_service.class.php';
+	  		$name=trim($_POST["name"]);
+	  		$category_name_id=trim($_POST["category_name_id"]);
+	  		$username=trim($_POST["username"]);
+	  		$pwd=md5(trim($_POST["pwd"]));
+	  		$telephone=trim($_POST["telephone"]);
+	  		$email=trim($_POST["email"]);
+	  		$user=new User(null, $name, $category_name_id, null, $username, $pwd, $telephone, $email, null, null);
+	  		$user_service=new UserService();
+	  		$id=$user_service->addUser($user);
 //			require_once './class/personnel_category_service.class.php';
 //			require_once 'class/personnel_category.class.php';
 //			$personnel_category_name=$_POST['personnel_category_name']; 
@@ -49,11 +61,13 @@ if(isset($_GET['action'])){
 //			$personnel_category_service=new PersonnelCategoryService();
 //			$personnel_category_service->addPersonnelCategory($personnel_category);
 //			
-//			$_SESSION['operation']=true;
-//			$_SESSION['operation_msg']="添加人员类别:".$personnel_category_name."成功";
+			$_SESSION['register']=true;
 			
-			header("Location: ./index.php?mod=user&action=ls");
-			break;	
+			$log_service->addLog("insert","用户",$id);
+			
+			header("Location: ./login.php");
+			break;
+	
 		case 'edit_get':
 //			if(isset($_GET['eid'])){
 //			$id=$_GET['eid'];
@@ -103,6 +117,8 @@ if(isset($_GET['action'])){
 function imageCodeCheck(){
 	$input_image_code=$_POST['input_image_code'];
 	$image_code=$_SESSION['$image_code'];
+	echo $input_image_code;
+	echo $image_code;
 	if(strcasecmp($input_image_code , $image_code)==0){
 		return true;
 	}else return false;

@@ -31,7 +31,7 @@ final class Database {
 		self::$dbport = 3306;
 		self::$dbname = "supplier_management";
 		self::$dbuser = "root";
-		self::$dbpass = "";
+		self::$dbpass = "123456";
 		self::connect();
 	}
 
@@ -133,7 +133,7 @@ final class Database {
 	}
 
 	/********************************************
-	* 作用:获取所有数据
+	* 作用:获取所有数据分页
 	* 返回:表内记录
 	* 类型:数组
 	* 参数:select * from table
@@ -145,6 +145,26 @@ final class Database {
 //		$sql=$sql." order by id desc";
 		if(isset($pageCurrent)){
 			$sql=$sql." LIMIT ".($pageCurrent - 1)*$PageSize." , ".$PageSize;
+		}
+		$result = array();
+		
+		self::$stmt = self::$DB->query($sql);
+		self::getErrInfo();
+		self::$querycount++;
+		$result = self::$stmt->fetchAll($type);
+		self::$stmt = null;
+		return $result;
+	}
+	
+	/********************************************
+	* 作用:获取所有数据
+	* 返回:表内记录
+	* 类型:数组
+	* 参数:select * from table
+	*********************************************/
+	public function getAllDate($sql,$type=PDO::FETCH_OBJ) {
+		if (self::$debug) {
+			echo $sql.'<br />';
 		}
 		$result = array();
 		

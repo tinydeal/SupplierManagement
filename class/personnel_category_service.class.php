@@ -47,5 +47,12 @@ class PersonnelCategoryService{
 		$sql=sprintf($sql." '%s' ","%".$keywords."%");
 		return $this->g_db->getRows($sql); 
 	}
+	
+	public  function getAll($sql="select * from t_personnel_category"){
+
+		$sql=$sql." order by id desc";
+		$array_personnel_category=$this->g_db->getAllDate($sql);
+		return $array_personnel_category;
+	}
 
 }

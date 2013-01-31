@@ -3,31 +3,31 @@
  * @auther lion
  * @date 2013-1-31
  */
-//session_start();
-//if(isset($_COOKIE['name']) && isset($_COOKIE['pwd'])){
-//	$name=$_COOKIE['name'];
-//	$pwd=$_COOKIE['pwd'];
-//	echo $name.$pwd;
-//	if(!(empty($name)||empty($pwd))){
-//		
-//	include("./user_manager.php");
-//	UserController::init();
-//	$user=new User(null,$name,$pwd);
-//	$rs=UserController::validateUser($user);
-//	if($rs){
-//		$url="./success.php";
-//		$_SESSION['name']=$name;
-//		header("Location: $url");
-//	}
-//		
-//	}
-//
-//}
-//
-//if (isset ($_SESSION['name'])) {
-//	$url = "./success.php";
-//	header("Location: $url");
-//}
+session_start();
+if(isset($_COOKIE['username']) && isset($_COOKIE['pwd'])){
+	$name=$_COOKIE['username'];
+	$pwd=$_COOKIE['pwd'];
+	echo $name.$pwd;
+	if(!(empty($username)||empty($pwd))){
+		require_once 'class/user.class.php';
+	  	require_once 'class/user_service.class.php';	
+		$user=new User(null,null,null,null,$username,$pwd,null,null,null,null);
+		$user_service=new UserService();
+		$rs=$user_service->validateUser($user);
+	if($rs){
+		$url="./index.php";
+		$_SESSION['username']=$username;
+		header("Location: $url");
+	}
+		
+	}
+
+}
+
+if (isset ($_SESSION['username'])) {
+	$url = "./index.php";
+	header("Location: $url");
+}
 
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
@@ -68,7 +68,7 @@ if (isset ($_SESSION['error'])) {
 if (isset ($_SESSION['register'])) {
 	echo "<div class='alert fade in alert-success'>
 	        <button type='button' class='close' data-dismiss='alert' >&times;</button>
-	        <strong>注册成功，请登录</strong>
+	        <strong>注册成功，请等待管理员审核</strong>
 	        </div>";
 	session_unset($_SESSION['register']);
 }

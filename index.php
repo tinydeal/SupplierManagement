@@ -3,6 +3,7 @@
  * @auther lion
  * @date 2013-1-26
  */
+session_start();
 ?>
 <!DOCTYPE html>
 <html>
@@ -30,7 +31,7 @@ require_once './includes/top.php';
 <div class="span10">
 <div class="operation">
 <?php 
-session_start();
+
 if(isset($_SESSION["operation"])){
 	$operation_msg=$_SESSION["operation_msg"];
 	$flag;
