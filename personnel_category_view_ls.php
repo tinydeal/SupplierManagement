@@ -1,7 +1,7 @@
 <?php
 /*
  * @auther lion
- * @date 2013-1-28
+ * @date 2013-1-30
  */
 require_once 'class/personnel_category_service.class.php';
 require_once 'class/personnel_category.class.php';

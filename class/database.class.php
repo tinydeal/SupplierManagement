@@ -142,7 +142,7 @@ final class Database {
 		if (self::$debug) {
 			echo $sql.'<br />';
 		}
-		$sql=$sql." order by id desc";
+//		$sql=$sql." order by id desc";
 		if(isset($pageCurrent)){
 			$sql=$sql." LIMIT ".($pageCurrent - 1)*$PageSize." , ".$PageSize;
 		}

@@ -8,6 +8,7 @@ class PersonnelCategoryService{
 	}
 	public  function listAll($pageCurrent,$PageSize,$sql="select * from t_personnel_category"){
 
+		$sql=$sql." order by id desc";
 		$array_personnel_category=$this->g_db->getAll($sql,$pageCurrent,$PageSize);
 		return $array_personnel_category;
 	}
@@ -38,6 +39,7 @@ class PersonnelCategoryService{
 	
 	public  function listAllByKeywords($pageCurrent,$PageSize,$keywords,$sql="select * from t_personnel_category where concat (personnel_category_name , permission_name ) like "){
 		$sql=sprintf($sql." '%s' ","%".$keywords."%");
+		$sql=$sql." order by id desc";
 		$array_personnel_category=$this->g_db->getAll($sql,$pageCurrent,$PageSize);
 		return $array_personnel_category;
 	}

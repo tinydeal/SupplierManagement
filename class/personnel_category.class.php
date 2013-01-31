@@ -3,7 +3,8 @@ class PersonnelCategory{
 	private $id;
 	private $personnel_category_name;
 	private $permission_name;
-	private $scrq;
+	private $created;
+	private $modified;
 	public function __construct($id,$personnel_category_name,$permission_name){
 		$this->id=$id;
 		$this->personnel_category_name=$personnel_category_name;
