@@ -22,11 +22,14 @@ $sub_pages=10;
 
 $url="index.php?mod=goods&action=ls&p=";
 if(isset($_GET["keywords"])){
-		$keywords=$_GET["keywords"];
+		$keywords=trim($_GET["keywords"]);
+		if(!empty($keywords)){
 		$array_goods=$goods_service->listAllByKeywords($pageCurrent,$page_size,$keywords);
 		$nums=$goods_service->getListRowsByKeywords($keywords);
-		if(!empty($keywords)){
-			$url="index.php?mod=goods&action=ls&keywords=$keywords&p=";
+		$url="index.php?mod=goods&action=ls&keywords=$keywords&p=";
+		}else{
+			$array_goods=$goods_service->listAll($pageCurrent,$page_size);
+			$nums=$goods_service->getListRows();
 		}
 }else{
 $array_goods=$goods_service->listAll($pageCurrent,$page_size);
@@ -94,6 +97,6 @@ $nums=$goods_service->getListRows();
 
 <script>
   $(function () {
-  				$('#keywords').val("<?=$_GET["keywords"]?>");
+  				$('#keywords').val("<?=$keywords?>");
                      } );
 </script>

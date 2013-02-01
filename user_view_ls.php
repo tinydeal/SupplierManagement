@@ -22,11 +22,14 @@ $sub_pages=10;
 
 $url="index.php?mod=user&action=ls&p=";
 if(isset($_GET["keywords"])){
-		$keywords=$_GET["keywords"];
-		$array_user=$user_service->listAllByKeywords($pageCurrent,$page_size,$keywords);
-		$nums=$user_service->getListRowsByKeywords($keywords);
+		$keywords=trim($_GET["keywords"]);
 		if(!empty($keywords)){
+			$array_user=$user_service->listAllByKeywords($pageCurrent,$page_size,$keywords);
+			$nums=$user_service->getListRowsByKeywords($keywords);
 			$url="index.php?mod=user&action=ls&keywords=$keywords&p=";
+		}else{
+			$array_user=$user_service->listAll($pageCurrent,$page_size);
+			$nums=$user_service->getListRows();
 		}
 }else{
 $array_user=$user_service->listAll($pageCurrent,$page_size);
@@ -91,6 +94,6 @@ $nums=$user_service->getListRows();
 
 <script>
   $(function () {
-  				$('#keywords').val("<?=$_GET["keywords"]?>");
+  				$('#keywords').val("<?=$keywords?>");
                 } );
 </script>

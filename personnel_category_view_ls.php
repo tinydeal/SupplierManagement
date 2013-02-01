@@ -22,11 +22,14 @@ $sub_pages=10;
 
 $url="index.php?mod=personnel_category&action=ls&p=";
 if(isset($_GET["keywords"])){
-		$keywords=$_GET["keywords"];
+		$keywords=trim($_GET["keywords"]);
+		if(!empty($keywords)){
 		$array_personnel_category=$personnel_category_service->listAllByKeywords($pageCurrent,$page_size,$keywords);
 		$nums=$personnel_category_service->getListRowsByKeywords($keywords);
-		if(!empty($keywords)){
-			$url="index.php?mod=personnel_category&action=ls&keywords=$keywords&p=";
+		$url="index.php?mod=personnel_category&action=ls&keywords=$keywords&p=";
+		}else{
+			$array_personnel_category=$personnel_category_service->listAll($pageCurrent,$page_size);
+			$nums=$personnel_category_service->getListRows();
 		}
 }else{
 $array_personnel_category=$personnel_category_service->listAll($pageCurrent,$page_size);
@@ -86,6 +89,6 @@ $nums=$personnel_category_service->getListRows();
 
 <script>
   $(function () {
-  				$('#keywords').val("<?=$_GET["keywords"]?>");
+  				$('#keywords').val("<?=$keywords?>");
                      } );
 </script>
