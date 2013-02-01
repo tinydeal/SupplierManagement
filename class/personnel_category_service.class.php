@@ -20,8 +20,10 @@ class PersonnelCategoryService{
 	public function addPersonnelCategory($personnel_category){
 		$personnel_category_name=$personnel_category->_get('personnel_category_name');
 		$permission_name=$personnel_category->_get('permission_name');
-		$sql=sprintf("insert  into  t_personnel_category  (personnel_category_name,permission_name)  values ('%s','%s')",$personnel_category_name,$permission_name);
-		return $this->g_db->Execute($sql);
+		$created=date('Y-m-d H:i:s');
+		$sql=sprintf("insert  into  t_personnel_category  (personnel_category_name,permission_name,created)  values ('%s','%s','%s')",$personnel_category_name,$permission_name,$created);
+		$this->g_db->Execute($sql);
+		return $this->g_db->getLastId();
 	}
 	
 	public function getPersonnelCategoryById($id){
