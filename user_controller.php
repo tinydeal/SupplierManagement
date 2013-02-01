@@ -129,10 +129,14 @@ if(isset($_GET['action'])){
 			}
 			break;
 		case 'logout':
-			if(isset($_SESSION['username']))
-			unset($_SESSION['username']);
-			if (isset($_SESSION['user_id']))
-			unset($_SESSION['user_id']);
+			if ($_SESSION['logined_user']){
+			unset($_SESSION['logined_user']);
+			}
+			if(isset($_SESSION['username'])){
+				unset($_SESSION['username']);
+			}
+			setcookie("name");
+			setcookie("pwd");
 			header("Location: ./login.php");
 			break;
 		case 'pwd_change_get':

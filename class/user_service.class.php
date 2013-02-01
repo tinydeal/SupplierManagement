@@ -57,7 +57,7 @@ private $g_db;
 		return $user;
 	}
 	public function getUserByUsername($username){
-		$sql=sprintf("select * from t_user where username=%d",$username);
+		$sql=sprintf("select * from t_user where username='%s'",$username);
 		$user=$this->g_db->getOne($sql);
 		$category_name_id=$user->category_name_id;
 		$personnel_category_service=new PersonnelCategoryService();
