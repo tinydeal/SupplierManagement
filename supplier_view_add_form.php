@@ -53,10 +53,10 @@ $array_supplier_category=$supplier_category_service->listAll($pageCurrent,$nums)
      <label class="control-label" for="is_provide_pictures">是否提供图片</label>
     <div class="controls">
      <label class="radio">
-      <input type="radio" name="is_provide_pictures" id="is_provide_pictures" value="1" checked>是  
+      <input type="radio" name="is_provide_pictures" id="is_provide_pictures1" value="1" checked>是  
      </label>
      <label class="radio">
-      <input type="radio" name="is_provide_pictures" id="is_provide_pictures" value="0">否  
+      <input type="radio" name="is_provide_pictures" id="is_provide_pictures0" value="0">否  
      </label>
     </div>
 

@@ -66,8 +66,22 @@ if(isset($_GET['action'])){
 				require_once 'class/supplier.class.php';				
 				$id=$_SESSION["id"];
 				unset($_SESSION["id"]);
-				$supplier_name=$_POST['supplier_name'];				
-				$supplier=new Supplier($id,$supplier_name);
+				$supplier_name=$_POST['supplier_name'];			
+				$supplier_category_id=$_POST['supplier_category_id'];
+				$wholesale_num_min=$_POST['wholesale_num_min'];
+				$wholesale_num_max=$_POST['wholesale_num_max'];
+				$goods_style=$_POST['goods_style'];
+				$goods_category=$_POST['goods_category'];
+				$is_provide_pictures=$_POST['is_provide_pictures'];
+				$website=$_POST['website'];
+				$linkman=$_POST['linkman'];
+				$telephone=$_POST['telephone'];
+				$province=$_POST['province'];
+				$city=$_POST['city'];
+				$village=$_POST['village'];
+				$address_detial=$_POST['address_detial'];
+				$note=$_POST['note'];					
+				$supplier=new Supplier($id,$supplier_name,$supplier_category_id,$wholesale_num_min,$wholesale_num_max,$goods_style,$goods_category,$is_provide_pictures,$website,$linkman,$telephone,$province,$city,$village,$address_detial,$note);
 				$supplier_service=new SupplierService();
 				$supplier_service->updateSupplier($supplier);
 				

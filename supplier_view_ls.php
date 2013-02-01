@@ -4,7 +4,7 @@
  * @date 2013-2-1
  */
 require_once 'class/supplier_service.class.php';
-//require_once 'class/supplier.class.php';
+require_once 'class/supplier.class.php';
 require_once 'class/sub_pages.class.php';
 
 if(isset($_GET["p"]))

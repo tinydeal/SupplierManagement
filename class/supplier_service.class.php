@@ -44,7 +44,7 @@ class SupplierService{
 	}
 	
 	public function getSupplierById($id){
-		$sql=sprintf("select * from t_supplier where id=%d",$id);
+		$sql=sprintf("select t_supplier.*,t_supplier_category.supplier_category_name from t_supplier,t_supplier_category where t_supplier_category.id=t_supplier.supplier_category_id and t_supplier.id=%d",$id);
 		return $this->g_db->getOne($sql);
 	}
 	
@@ -72,7 +72,7 @@ class SupplierService{
 	public  function listAllByKeywords($pageCurrent,$PageSize,$keywords,$sql="select t_supplier.*,t_supplier_category.supplier_category_name from t_supplier,t_supplier_category where t_supplier_category.id=t_supplier.supplier_category_id and supplier_name like "){
 		$sql=sprintf($sql." '%s' ","%".$keywords."%");
 		$sql=$sql." order by id desc";
-		$array_supplier_category=$this->g_db->getAll($sql,$pageCurrent,$PageSize);
+		$array_supplier=$this->g_db->getAll($sql,$pageCurrent,$PageSize);
 		return $array_supplier;
 	}
 	public  function getListRowsByKeywords($keywords,$sql="select count(*) from t_supplier where supplier_name like "){
