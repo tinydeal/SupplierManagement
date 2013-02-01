@@ -82,7 +82,25 @@ if(isset($_GET['action'])){
 				
 			}
 			header("Location: ./index.php?mod=goods&action=ls");
-				
+			break;
+		case 'detail':
+			if(isset($_GET['did'])){
+				$id=$_GET['did'];
+				if(is_numeric($id)){
+				require_once './class/goods_service.class.php';
+				require_once 'class/goods.class.php';
+				$goods_service=new GoodsService();
+				$goods=$goods_service->getGoodsById($id);
+				$goods=serialize($goods);
+				$_SESSION['goods']=$goods;
+				require_once './goods_view_detail.php';
+				}else{
+					header("Location: ./index.php?mod=goods&action=ls");
+				}
+			}else{
+					header("Location: ./index.php?mod=goods&action=ls");
+			}
+			break;		
 		default:
 			break;			
 	}

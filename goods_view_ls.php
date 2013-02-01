@@ -75,7 +75,7 @@ $nums=$goods_service->getListRows();
     <?php 
     foreach ($array_goods as $goods){
     	echo "<tr> 
-    	<td>$goods->goods_name</td>
+    	<td><a href='./index.php?mod=goods&action=detail&did=$goods->id'>$goods->goods_name</td>
     	<td>$goods->goods_category_name</td>
     	<td>$goods->system_number</td>
     	<td>$goods->price</td>
