@@ -21,25 +21,23 @@ class SupplierCategoryService{
 		return $this->g_db->getRows($sql);
 	}
 	
-	public function addsupplierCategory($supplier_category){
+	public function addSupplierCategory($supplier_category){
 		date_default_timezone_set('PRC');
 		$supplier_category_name=$supplier_category->_get('supplier_category_name');
-		$modified=date('Y-m-d H:i:s');		
-		$sql=sprintf("insert  into  t_supplier_category  (supplier_category_name,modified)  values ('%s','%s')",$supplier_category_name,$modified);
+		$created=date('Y-m-d H:i:s');		
+		$sql=sprintf("insert into t_supplier_category (supplier_category_name,created) values ('%s','%s')",$supplier_category_name,$created);
 		return $this->g_db->Execute($sql);
 	}
 	
-	public function getsupplierCategoryById($id){
+	public function getSupplierCategoryById($id){
 		$sql=sprintf("select * from t_supplier_category where id=%d",$id);
 		return $this->g_db->getOne($sql);
 	}
 	
-	public function updatesupplierCategory($supplier_category){
-		date_default_timezone_set('PRC');
+	public function updateSupplierCategory($supplier_category){		
 		$id=$supplier_category->_get('id');
-		$supplier_category_name=$supplier_category->_get('supplier_category_name');
-		$modified=date('Y-m-d H:i:s');
-		$sql=sprintf("update t_supplier_category set supplier_category_name='%s',modified='%s' where id=%d",$supplier_category_name,$modified,$id);
+		$supplier_category_name=$supplier_category->_get('supplier_category_name');		
+		$sql=sprintf("update t_supplier_category set supplier_category_name='%s' where id=%d",$supplier_category_name,$id);
 		return $this->g_db->Execute($sql);
 	}
 	

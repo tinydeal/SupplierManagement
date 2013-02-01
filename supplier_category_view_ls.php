@@ -58,7 +58,7 @@ if(isset($_GET["keywords"])){
 <table class="table table-bordered table-striped  table-hover" id="table">
   <thead>
       <tr>
-        <th>分类名称</th>        
+        <th>类别</th>        
         <th>操作</th>
       </tr>
     </thead>

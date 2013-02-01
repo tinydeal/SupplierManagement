@@ -32,14 +32,14 @@ class LogService{
 	public function addLog($operation,$modify_type,$id){		
 		date_default_timezone_set('PRC');
 		if(isset($_SESSION['username'])){
-			$log_username=$_SESSION['username'];//等用户功能做好后改为登录用户名$_SESSION['username']
+			$log_username=$_SESSION['username'];
 		}
 		else{
 			$log_username="新用户";
 		}
 		if(!$id)
 			$id=$this->g_db->getLastId();
-		$log_modified=date('Y-m-d H:i:s');
+		$log_created=date('Y-m-d H:i:s');
 		$log_operation_msg=$log_username;		
 		switch ($operation) {
 			case 'insert':
@@ -61,7 +61,7 @@ class LogService{
 				# code...
 				break;
 		}
-		$sql=sprintf("insert into t_log (operation_msg,username,modified) values('%s','%s','%s')",$log_operation_msg,$log_username,$log_modified);
+		$sql=sprintf("insert into t_log (operation_msg,username,created) values('%s','%s','%s')",$log_operation_msg,$log_username,$log_created);
 		$this->g_db->Execute($sql);
 	}
 }

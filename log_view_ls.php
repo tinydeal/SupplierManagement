@@ -4,7 +4,7 @@
  * @date 2013-1-30
  */
 require_once 'class/log_service.class.php';
-require_once 'class/log.class.php';
+//require_once 'class/log.class.php';
 require_once 'class/sub_pages.class.php';
 
 if(isset($_GET["p"]))
