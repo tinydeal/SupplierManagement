@@ -13,7 +13,7 @@
     <div class="controls">
       <input type="text" id="goods_category_name" placeholder="" name="goods_category_name" required>
     </div>
-  </div>
+  </div> 
 
   <div class="control-group">
     <div class="controls">

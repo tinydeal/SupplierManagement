@@ -51,6 +51,13 @@ class GoodsCategoryService{
 		return $this->g_db->Execute($sql);
 	}
 	
+	public  function getAll($sql="select * from t_goods_category"){
+
+		//$sql=$sql." order by id desc";
+		$array_goods_category=$this->g_db->getAllDate($sql);
+		return $array_goods_category;
+	}
+	
 	
 }
 ?>

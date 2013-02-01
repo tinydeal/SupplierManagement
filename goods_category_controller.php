@@ -60,12 +60,12 @@ if(isset($_GET['action'])){
 				$goods_category_service->updateGoodsCategory($goods_category);
 				
 				$_SESSION['operation']=true;
-				$_SESSION['operation_msg']="修改人员类别:".$goods_category_name."成功";	
+				$_SESSION['operation_msg']="修改产品类别:".$goods_category_name."成功";	
 				
-				$log_service->addLog("update","人员类别",$id);			
+				$log_service->addLog("update","产品类别",$id);			
 			}else{
 				$_SESSION['operation']=false;
-				$_SESSION['operation_msg']="修改人员类别:".$goods_category_name."失败";
+				$_SESSION['operation_msg']="修改产品类别:".$goods_category_name."失败";
 				
 			}
 			header("Location: ./index.php?mod=goods_category&action=ls");
