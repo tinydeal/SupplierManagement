@@ -6,6 +6,7 @@
 require_once 'class/user_service.class.php';
 require_once 'class/user.class.php';
 require_once 'class/sub_pages.class.php';
+require_once 'class/code_names.class.php';
 
 if(isset($_GET["p"]))
 	$pageCurrent=$_GET["p"];  
@@ -70,17 +71,15 @@ $nums=$user_service->getListRows();
     <?php 
     foreach ($array_user as $user){
     	echo "<tr> 
-    	<td>$user->username</td>  
+    	<td><a href='./index.php?mod=user&action=detail&did=$user->id'>$user->username</a></td>
         <td>$user->category_name</td>
         <td>$user->name</td>
         <td>$user->telephone</td>
         <td>$user->email</td>
-        <td>$user->state</td>
+        <td>".CodeNames::$user_state[$user->state]."</td>
        <td><a class='btn btn-primary' href='./index.php?mod=user&action=edit_get&eid=".$user->id."'>修改</a></td>
       </tr>";
     }
-    
-    
     ?>
       
     </tbody>

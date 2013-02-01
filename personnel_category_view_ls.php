@@ -6,6 +6,7 @@
 require_once 'class/personnel_category_service.class.php';
 require_once 'class/personnel_category.class.php';
 require_once 'class/sub_pages.class.php';
+require_once 'class/code_names.class.php';
 
 if(isset($_GET["p"]))
 	$pageCurrent=$_GET["p"];  
@@ -68,7 +69,7 @@ $nums=$personnel_category_service->getListRows();
     foreach ($array_personnel_category as $personnel_category){
     	echo "<tr> 
     	<td>$personnel_category->personnel_category_name</td>  
-        <td>$personnel_category->permission_name</td>
+        <td>".CodeNames::$permission_name[$personnel_category->permission_name]."</td>
        <td><a class='btn btn-primary' href='./index.php?mod=personnel_category&action=edit_get&eid=".$personnel_category->id."'>修改</a></td>
       </tr>";
     }

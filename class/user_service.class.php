@@ -48,16 +48,38 @@ private $g_db;
 	
 	public function getUserById($id){
 		$sql=sprintf("select * from t_user where id=%d",$id);
-		return $this->g_db->getOne($sql);
+		$user=$this->g_db->getOne($sql);
+		$category_name_id=$user->category_name_id;
+		$personnel_category_service=new PersonnelCategoryService();
+		$personnel_category=$personnel_category_service->getPersonnelCategoryById($category_name_id);
+		$category_name=$personnel_category->personnel_category_name;
+		$user->category_name=$category_name;
+		return $user;
+	}
+	public function getUserByUsername($username){
+		$sql=sprintf("select * from t_user where username=%d",$username);
+		$user=$this->g_db->getOne($sql);
+		$category_name_id=$user->category_name_id;
+		$personnel_category_service=new PersonnelCategoryService();
+		$personnel_category=$personnel_category_service->getPersonnelCategoryById($category_name_id);
+		$category_name=$personnel_category->personnel_category_name;
+		$user->category_name=$category_name;
+		return $user;
 	}
 	
-	public function updateUser($personnel_category){
-		$id=$personnel_category->_get('id');
-		$personnel_category_name=$personnel_category->_get('personnel_category_name');
-		$permission_name=$personnel_category->_get('permission_name');
-		$sql=sprintf("update t_personnel_category set personnel_category_name='%s',permission_name='%s' where id=%d",$personnel_category_name,$permission_name,$id);
+	public function updateUser($user){
+		$id=$user->id;
+		$name=$user->name;
+	  	$category_name_id=$user->category_name_id;
+		$username=$user->username;
+		$pwd=$user->pwd;
+  		$telephone=$user->telephone;
+  		$email=$user->email;
+  		$state=$user->state;
+  		$note=$user->note;
+		$sql=sprintf("update t_user set name='%s',category_name_id='%d',username='%s',pwd='%s',telephone='%s',email='%s',state='%s',note='%s' where id=%d",$name,$category_name_id,$username,$pwd, $telephone,$email,$state,$note,$id);
 		return $this->g_db->Execute($sql);
-	}
+	} 
 	
 	public  function listAllByKeywords($pageCurrent,$PageSize,$keywords,$sql="select * from t_user,t_personnel_category where t_personnel_category.id=t_user.category_name_id and concat ( t_user.username  ,t_personnel_category.personnel_category_name , t_user.name , t_user.telephone , t_user.email , t_user.state ) like  "){
 		$sql=sprintf($sql." '%s' ","%".$keywords."%");

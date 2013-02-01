@@ -20,9 +20,9 @@ require_once 'class/code_names.class.php';
     <label class="control-label" for="permission_name" >权限</label>
     <div class="controls">
       <select name="permission_name">
-              <option value="<?=CodeNames::$permission_name_procurement?>">采购</option>
-              <option value="<?=CodeNames::$permission_name_order?>">产品下单</option>
-              <option value="<?=CodeNames::$permission_name_administrator?>">管理员</option>
+              <option value="<?=CodeNames::$permission_name_procurement?>"><?=CodeNames::$permission_name['permission_name_procurement']?></option>
+              <option value="<?=CodeNames::$permission_name_order?>"><?=CodeNames::$permission_name['permission_name_order']?></option>
+              <option value="<?=CodeNames::$permission_name_administrator?>"><?=CodeNames::$permission_name['permission_name_administrator']?></option>
             </select>
     </div>
   </div> 

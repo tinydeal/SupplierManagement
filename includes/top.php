@@ -3,6 +3,10 @@
  * @auther lion
  * @date 2013-1-26
  */
+if(isset($_SESSION["logined_user"])){
+	$logined_user=unserialize($_SESSION["logined_user"]);
+	$id=$logined_user->id;
+}
 ?>
 
 <div id="navbar" class="navbar navbar-inverse  navbar-static">
@@ -13,10 +17,10 @@
 	<li id="fat-menu" class="dropdown"><a href="#" class="dropdown-toggle"
 		data-toggle="dropdown"><?= $_SESSION["username"]?><b class="caret"></b></a>
 	<ul class="dropdown-menu">
-		<li><a href="#">个人信息</a></li>
-		<li><a href="#">修改密码</a></li>
+		<li><a href="./index.php?mod=user&action=detail&did=<?=$id?>">个人信息</a></li>
+		<li><a href="./index.php?mod=user&action=pwd_change_get">修改密码</a></li>
 		<li class="divider"></li>
-		<li><a href="#">退出</a></li>
+		<li><a href="./index.php?mod=user&action=logout">退出</a></li>
 	</ul>
 	</li>
 </ul>

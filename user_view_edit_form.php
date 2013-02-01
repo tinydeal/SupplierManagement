@@ -5,50 +5,37 @@
  */
 require_once 'class/personnel_category.class.php';
 require_once 'class/personnel_category_service.class.php';
+require_once 'class/user.class.php';
+require_once 'class/user_service.class.php';
+require_once 'class/code_names.class.php';
 $personnel_category_service=new PersonnelCategoryService();
 $array_personnel_category=$personnel_category_service->getAll();
+
+$user=unserialize($_SESSION['user']);
+$id=$user->id;
+$name=$user->name;
+$category_name_id=$user->category_name_id;
+$username=$user->username;
+$telephone=$user->telephone;
+$email=$user->email;
+$state=$user->state;
+
+unset($_SESSION["user"]);
+$_SESSION['id']=$id;
 ?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-	"http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta http-equiv="Content-Language" content="en" />
-	<meta name="GENERATOR" content="PHPEclipse 1.2.0" />
-	<?php
-		require_once './includes/css.php';
-		require_once './includes/js.php';
-	?> 
-	<title>title</title>
-</head>
-<body>
-
-<form class="form-horizontal"  action="./index.php?mod=user&action=user_register" method="post" id="form">
-       <legend>用户注册</legend>
-
+<form class="form-horizontal"  action="./index.php?mod=user&action=edit_post" method="post" id="form">
+       <legend>人员信息修改</legend>
   <div class="control-group" id="check_name" >
     <label class="control-label">用户名</label>
     <div class="controls" >
-      <input type="text" id="username" name="username" required pattern="^[a-zA-Z][a-zA-Z0-9_]{4,15}$" data-validation-pattern-message="字母开头，允许5-16字节，允许字母数字下划线">
+      <input type="text" id="username" name="username" readonly>
     </div>
   </div>
-  <div class="control-group">
-    <label class="control-label" for="inputPassword">密码</label>
-    <div class="controls">
-      <input type="password" id="pwd" placeholder="" name="pwd" required pattern="[a-zA-Z0-9_]{5,15}$" data-validation-pattern-message="密码长度六位以上">
-    </div>
-  </div>
-    <div class="control-group">
-    <label class="control-label" for="inputPassword">确认密码</label>
-    <div class="controls">
-      <input type="password" id="rppwd" placeholder="" name="rppwd" data-validation-matches-match="pwd" data-validation-matches-message=
-    "两次密码必须一致"  required>
-    </div>
-  </div>
+
    <div class="control-group">
     <label class="control-label" for="name">姓名</label>
     <div class="controls">
-      <input type="text" id="name" placeholder="" name="name"   required>
+      <input type="text" id="name" placeholder="" name="name"   readonly>
     </div>
   </div>
      <div class="control-group">
@@ -77,10 +64,28 @@ $array_personnel_category=$personnel_category_service->getAll();
       <input type="text" id="email" placeholder="" name="email" pattern="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" data-validation-pattern-message="请输入正确的邮箱"  required>
     </div>
   </div>
+       <div class="control-group">
+    <label class="control-label" for="state">状态</label>
+    <div class="controls">
+      <select name="state" id="state">
+			<option value="<?=CodeNames::$user_state_disable?>"><?=CodeNames::$user_state['user_state_disable']?></option>
+			<option value="<?=CodeNames::$user_state_normal?>"><?=CodeNames::$user_state['user_state_normal']?></option>
+      </select>
+    </div>
+  </div>
+  
+         <div class="control-group">
+    <label class="control-label" for="note">备注</label>
+    <div class="controls">
+      <textarea type="text" id=""note"" placeholder="" name="note"></textarea>
+    </div>
+  </div>
+  
   <div class="control-group">
     <div class="controls">
 
       <button type="submit" class="btn btn-primary">提交</button>
+      <a   class="btn" href="javascript:history.go(-1);">返回</a>
     </div>
   </div>
 </form>
@@ -98,22 +103,12 @@ $array_personnel_category=$personnel_category_service->getAll();
                             return $(this).is(":visible");
                         }
                     });
-                    
-                    $("#username").blur(function(){
-                    var username= $.trim($("#username").val());
-                    
-                     $.get("./check_username.php",{username:username},function(response){
-                         if(!response.status){
-                          $("#check_name .help-block").text("用户名已被使用");
-                          $("#check_name").toggleClass("error");
-                         }else{
-                             $("#check_name .help-block").text("用户名可以使用");
-                             $("#check_name").toggleClass("success"); 
-                         }
-                     },"json");
-					}) 
-                     } );
-</script>
+  $("#name").val('<?=$name?>');  
+  $("#username").val("<?=$username?>"); 
+  $("#category_name_id").val('<?=$category_name_id?>'); 
+  $("#email").val('<?=$email?>');
+  $("#telephone").val('<?=$telephone?>'); 
+  $("#state").val('<?=$state?>'); 
 
-</body>
-</html>
+					}); 
+</script>

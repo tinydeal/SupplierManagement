@@ -7,7 +7,6 @@ session_start();
 if(isset($_COOKIE['username']) && isset($_COOKIE['pwd'])){
 	$name=$_COOKIE['username'];
 	$pwd=$_COOKIE['pwd'];
-	echo $name.$pwd;
 	if(!(empty($username)||empty($pwd))){
 		require_once 'class/user.class.php';
 	  	require_once 'class/user_service.class.php';	

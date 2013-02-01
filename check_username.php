@@ -1,5 +1,8 @@
 <?php
-
+/*
+ * @auther lion
+ * @date 2013-1-31
+ */
 $username = $_GET ['username'];
 require_once 'class/user.class.php';
 require_once 'class/user_service.class.php';
