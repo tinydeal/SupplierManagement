@@ -91,7 +91,7 @@ $_SESSION ['id'] = $id;
 
   <div class="control-group">
     <div class="controls">
-      <button type="submit" class="btn btn-primary">添加</button>
+      <button type="submit" class="btn btn-primary">修改</button>
       <a   class="btn" href="javascript:history.go(-1);">返回</a>
     </div>
   </div>

@@ -79,5 +79,8 @@ class SupplierService{
 		$sql=sprintf($sql." '%s' ","%".$keywords."%");
 		return $this->g_db->getRows($sql); 
 	}
+	public function getAll($sql="select * from t_supplier "){
+		return $this->g_db->getAllDate($sql);
+	}
 
 }

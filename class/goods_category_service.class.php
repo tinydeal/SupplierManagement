@@ -4,7 +4,7 @@
  * @date 2013-2-1
  */
 class GoodsCategoryService{
-		private $g_db;
+	private $g_db;
 	public function __construct(){
 		require_once 'class/goods_category.class.php';
 		require_once './class/database.class.php';
