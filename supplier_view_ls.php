@@ -63,12 +63,12 @@ if(isset($_GET["keywords"])){
         <th>批价区间</th>       
         <th>产品风格</th>
         <th>产品属类</th>
-        <th>图片</th>
+   <!-- <th>图片</th>
         <th>网址</th>
         <th>联系人</th>
         <th>手机</th>        
         <th>地址</th>
-        <th>备注</th>        
+        <th>备注</th> -->       
         <th>操作</th>
       </tr>
     </thead>
@@ -81,19 +81,20 @@ if(isset($_GET["keywords"])){
         $supplier->is_provide_pictures="无";
       }       
       echo "<tr> 
-      <td>$supplier->supplier_name</td>
+      <td><a href='./index.php?mod=supplier&action=detail&did=$supplier->id'>$supplier->supplier_name</a></td>
       <td>$supplier->supplier_category_name</td>
       <td>$supplier->wholesale_num_min~$supplier->wholesale_num_max</td>      
       <td>$supplier->goods_style</td> 
-      <td>$supplier->goods_category</td>     
-      <td>$supplier->is_provide_pictures</td>
+      <td>$supplier->goods_category</td>
+      <td><a class='btn btn-primary' href='./index.php?mod=supplier&action=edit_get&eid=".$supplier->id."'>修改</a></td>
+      </tr>";     
+      /*<td>$supplier->is_provide_pictures</td>
       <td>$supplier->website</td>
       <td>$supplier->linkman</td> 
       <td>$supplier->telephone</td>      
       <td>$supplier->province$supplier->city$supplier->village$supplier->address_detial</td>
-      <td>$supplier->note</td>          
-      <td><a class='btn btn-primary' href='./index.php?mod=supplier&action=edit_get&eid=".$supplier->id."'>修改</a></td>
-      </tr>";
+      <td>$supplier->note</td>      
+      */
     }
     
     

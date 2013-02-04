@@ -42,6 +42,15 @@ class SupplierService{
 		$sql=sprintf("insert into  t_supplier (supplier_name,supplier_category_id,wholesale_num_min,wholesale_num_max,goods_style,goods_category,is_provide_pictures,website,linkman,telephone,province,city,village,address_detial,note,created) values ('%s','%d','%d','%d','%s','%s','%d','%s','%s','%s','%s','%s','%s','%s','%s','%s')",$supplier_name,$supplier_category_id,$wholesale_num_min,$wholesale_num_max,$goods_style,$goods_category,$is_provide_pictures,$website,$linkman,$telephone,$province,$city,$village,$address_detial,$note,$created);
 		return $this->g_db->Execute($sql);
 	}
+
+	public function addGoods($id,$goods_id){
+		date_default_timezone_set('PRC');
+		$created=date('Y-m-d H:i:s');	
+		foreach ($goods_id as $goodsID) {
+			$sql=sprintf("insert into  t_supplier_rel_goods (supplier_id,goods_id,created) values ('%d','%d','%s')",$id,$goodsID,$created);
+			$this->g_db->Execute($sql);
+		}		
+	}
 	
 	public function getSupplierById($id){
 		$sql=sprintf("select t_supplier.*,t_supplier_category.supplier_category_name from t_supplier,t_supplier_category where t_supplier_category.id=t_supplier.supplier_category_id and t_supplier.id=%d",$id);

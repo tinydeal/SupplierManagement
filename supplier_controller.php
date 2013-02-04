@@ -11,6 +11,27 @@ if(isset($_GET['action'])){
 		case 'ls':
 			require_once './supplier_view_ls.php';
 			break;
+		case 'detail':
+			if(isset($_GET['did'])){
+			$id=$_GET['did'];			
+			if(is_numeric($id)){
+			require_once 'class/supplier.class.php';
+	  		require_once 'class/supplier_service.class.php';	  		
+			$supplier_service=new SupplierService();
+			if(isset($_POST['goods_id'])){
+				$supplier_service->addGoods($id,$_POST['goods_id']);
+			}
+			$supplier=$supplier_service->getSupplierById($id);
+			$supplier=serialize($supplier);
+			$_SESSION['supplier']=$supplier;
+			require_once './supplier_view_detail.php';
+			}else{
+				header("Location: ./index.php?mod=supplier&action=ls");
+			}
+			}else{
+				header("Location: ./index.php?mod=supplier&action=ls");
+			}
+			break;
 		case 'add_get':
 			require_once './supplier_view_add_form.php';
 			break;
