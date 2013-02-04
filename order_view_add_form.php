@@ -5,13 +5,18 @@
  */
 require_once 'class/supplier.class.php';
 require_once 'class/supplier_service.class.php';
+require_once 'class/goods.class.php';
+require_once 'class/goods_service.class.php';
 $supplier_service=new SupplierService();
 $array_supplier=$supplier_service->getAll();
 $supplier_id=$array_supplier[0]->id;
+$goods_service=new GoodsService();
+$array_goods=$goods_service->getGoodsBySupplierId($supplier_id);
+ 
 ?>
 <h3>新增采购单</h3>
 <hr class="bs-docs-separator">
-<div class="div-form">
+<div class="div-form ">
 <form class="form-horizontal" action="./index.php?mod=goods&action=add_post" method="post">
 
        <div class="control-group">
@@ -32,26 +37,36 @@ $supplier_id=$array_supplier[0]->id;
     <div class="controls">
       <textarea type="text" id="note" placeholder="" name="note" ></textarea>
     </div>
-  </div> 
-  
-  <table>
+  </div>
+  <div class="control-group"> 
+  <table class="table table-bordered table-striped  table-hover table-condensed" id="table" style="width: 30%;">
   <thead>
     <tr><th>商品名称</th>
    		<th>商品编号</th>
 		<th>商品数量</th>
-		<th>选择</th>
 	</tr>
   </thead>
   <tbody>
-  <tr>
-  	<td></td>
   
-  </tr>
+  <?php 
+  		 foreach ($array_goods as $goods){
+    		echo "<tr> 
+    		<td>
+             		 <label  class='checkbox'>
+                	 <input type='checkbox'  id='optionsCheckbox' name='goods_id[]' value='$goods->id'><a href='./index.php?mod=goods&action=detail&did=$goods->id'>$goods->goods_name</a>
+              </label>
+            </td>
+    		<td>$goods->system_number</td>
+    		<td><input class='input-small' type='text' name='goods_number[]' /></td>
+
+      </tr>" ; };
+  ?>
+
   
   </tbody>
   
   </table>
-
+  </div>
   <div class="control-group">
     <div class="controls">
       <button type="submit" class="btn btn-primary">添加</button>
@@ -75,4 +90,4 @@ $supplier_id=$array_supplier[0]->id;
                     });
                     
                      } );
-</script>
+  </script>

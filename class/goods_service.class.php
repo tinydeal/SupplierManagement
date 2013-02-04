@@ -80,6 +80,13 @@ class GoodsService{
 		$sql=sprintf("update t_goods  set goods_name='%s',goods_category_id='%s',system_number='%s',price='%s',size='%s',color='%s',description='%s',website='%s',note='%s' where id=%d",$goods_name,$goods_category_id,$system_number,$price,$size,$color,$description,$website,$note,$id);
 		return $this->g_db->Execute($sql);
 	}
+	  
+	public function getGoodsBySupplierId($id){
+		$sql="select t_goods.* from t_goods,t_supplier_rel_goods where t_goods.id=t_supplier_rel_goods.goods_id and t_supplier_rel_goods.supplier_id= %d";
+		$sql=sprintf($sql,$id);
+		$array_goods=$this->g_db->getAllDate($sql);
+		return $array_goods;
+	}
 	
 }
 ?>

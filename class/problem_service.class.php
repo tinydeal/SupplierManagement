@@ -24,7 +24,7 @@ class ProblemService{
 		}
 		return $array_problem;
 	}
-	public function getListRows($sql="select count(*) from t_goods"){
+	public function getListRows($sql="select count(*) from t_problem"){
 		return $this->g_db->getRows($sql);
 	}
 	
