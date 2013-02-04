@@ -40,12 +40,14 @@ class PersonnelCategoryService{
 	}
 	
 	public  function listAllByKeywords($pageCurrent,$PageSize,$keywords,$sql="select * from t_personnel_category where concat (personnel_category_name , permission_name ) like "){
+		$keywords=strtr($keywords, CodeNames::$permission_search_replace); 
 		$sql=sprintf($sql." '%s' ","%".$keywords."%");
 		$sql=$sql." order by id desc";
 		$array_personnel_category=$this->g_db->getAll($sql,$pageCurrent,$PageSize);
 		return $array_personnel_category;
 	}
 	public  function getListRowsByKeywords($keywords,$sql="select count(*) from t_personnel_category where concat (personnel_category_name , permission_name ) like "){
+		$keywords=strtr($keywords, CodeNames::$permission_search_replace); 
 		$sql=sprintf($sql." '%s' ","%".$keywords."%");
 		return $this->g_db->getRows($sql); 
 	}

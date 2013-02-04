@@ -82,6 +82,7 @@ private $g_db;
 	} 
 	
 	public  function listAllByKeywords($pageCurrent,$PageSize,$keywords,$sql="select * from t_user,t_personnel_category where t_personnel_category.id=t_user.category_name_id and concat ( t_user.username  ,t_personnel_category.personnel_category_name , t_user.name , t_user.telephone , t_user.email , t_user.state ) like  "){
+		$keywords=strtr($keywords, CodeNames::$user_search_replace); 
 		$sql=sprintf($sql." '%s' ","%".$keywords."%");
 		$sql=$sql." order by t_user.id desc ";
 		$array_user=$this->g_db->getAll($sql,$pageCurrent,$PageSize); 
@@ -95,6 +96,7 @@ private $g_db;
 		return $array_user;
 	}
 	public  function getListRowsByKeywords($keywords,$sql="select count(*) from t_user,t_personnel_category where t_personnel_category.id=t_user.category_name_id and concat ( t_user.username  ,t_personnel_category.personnel_category_name , t_user.name , t_user.telephone , t_user.email , t_user.state ) like  "){
+		$keywords=strtr($keywords, CodeNames::$user_search_replace);
 		$sql=sprintf($sql." '%s' ","%".$keywords."%");
 		return $this->g_db->getRows($sql);
 	}
