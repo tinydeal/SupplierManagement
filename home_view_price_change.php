@@ -57,7 +57,8 @@ $array_goods=$goods_service->listAll($pageCurrent,$page_size);
 </div>
 <script type="text/javascript">
 function getGoodsPrice(){   
-  var goods_name=$("#goods_id").find("option:selected").text();  
+  var goods_name=$("#goods_id").find("option:selected").text();
+  document.getElementById('price_change').caption.innerHTML=goods_name+"价格变化趋势";
   $.ajax({
     type: "POST",
     url: "goods_price_change.php",
