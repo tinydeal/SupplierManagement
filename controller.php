@@ -3,6 +3,7 @@
  * @auther lion
  * @date 2013-1-26
  */
+require_once "./class/code_names.class.php";
 if(!isset($_SESSION['username'])){
 	header("Location: ./login.php");
 }
@@ -13,17 +14,33 @@ if(isset($_GET['mod'])){
 			require_once './home_controller.php';
 			break;
 		case 'supplier_category':
-			require_once './supplier_category_controller.php';
+			if(strstr($_SESSION['user_permission_name'],CodeNames::permission_name_procurement)||strstr($_SESSION['user_permission_name'],CodeNames::permission_name_administrator))
+				require_once './supplier_category_controller.php';
+			else
+				header("Location: ./index.php?mod=home");
 			break;
 		case 'supplier':
-			require_once './supplier_controller.php';
+			if(strstr($_SESSION['user_permission_name'],CodeNames::permission_name_procurement)||strstr($_SESSION['user_permission_name'],CodeNames::permission_name_administrator))
+				require_once './supplier_controller.php';
+			else
+				header("Location: ./index.php?mod=home");
 			break;
+
 		case 'goods_category':
-			require_once './goods_category_controller.php';
+			if(strstr($_SESSION['user_permission_name'],CodeNames::permission_name_procurement)||strstr($_SESSION['user_permission_name'],CodeNames::permission_name_administrator))
+				require_once './goods_category_controller.php';
+			else
+				header("Location: ./index.php?mod=home");
 			break;
+			
+		
 		case 'goods':
-			require_once './goods_controller.php';
+			if(strstr($_SESSION['user_permission_name'],CodeNames::permission_name_procurement)||strstr($_SESSION['user_permission_name'],CodeNames::permission_name_administrator))
+				require_once './goods_controller.php';
+			else
+				header("Location: ./index.php?mod=home");
 			break;
+			
 		case 'order':
 			require_once './order_controller.php';
 			break;
