@@ -7,6 +7,7 @@ if(isset($_SESSION["logined_user"])){
 	$logined_user=unserialize($_SESSION["logined_user"]);
 	$id=$logined_user->id;
 }
+
 ?>
 
 <div id="navbar" class="navbar navbar-inverse  navbar-static">

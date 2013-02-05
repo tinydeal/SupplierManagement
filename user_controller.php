@@ -34,6 +34,12 @@ if(isset($_GET['action'])){
 				$user=$user_service->getUserByUsername($username);
 				$_SESSION['username']=$username;
 				$_SESSION['logined_user']=serialize($user);
+				require_once 'class/personnel_category_service.class.php';
+				require_once 'class/personnel_category.class.php';
+				$personnel_category_service=new PersonnelCategoryService();
+				$personnel_category=$personnel_category_service->getPersonnelCategoryById($user->category_name_id);
+				$user_permission_name=$personnel_category->permission_name;
+				$_SESSION['user_permission_name']=$user_permission_name;
 				
 			if(isset($_POST['auto_login'])){ 
 					$auto_login=$_POST['auto_login'];
@@ -134,6 +140,9 @@ if(isset($_GET['action'])){
 			}
 			if(isset($_SESSION['username'])){
 				unset($_SESSION['username']);
+			}
+			if(isset($_SESSION['user_permission_name'])){
+				unset($_SESSION['user_permission_name']);
 			}
 			setcookie("name");
 			setcookie("pwd");
