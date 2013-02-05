@@ -12,7 +12,7 @@ class ProblemService{
 	}
 	public  function listAll($pageCurrent,$PageSize,$sql="select * from t_problem"){
 
-		$sql=$sql." order by id desc";
+		$sql=$sql." order by modified desc";
 		$array_problem=$this->g_db->getAll($sql,$pageCurrent,$PageSize);
 		require_once 'class/supplier_service.class.php';
 		$supplier_service=new SupplierService();
