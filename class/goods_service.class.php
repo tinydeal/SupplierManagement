@@ -87,6 +87,13 @@ class GoodsService{
 		$array_goods=$this->g_db->getAllDate($sql);
 		return $array_goods;
 	}
+	public function getGoodsBySupplierIdNotInOrder($supplier_id,$order_id){
+		$sql="select t_goods.* from t_goods,t_supplier_rel_goods where t_goods.id=t_supplier_rel_goods.goods_id and t_supplier_rel_goods.supplier_id= %d and goods_id not in(select goods_id from t_order_goods where order_id=%d )";
+		$sql=sprintf($sql,$supplier_id,$order_id);
+		$array_goods=$this->g_db->getAllDate($sql);
+		return $array_goods;
+	}	
+
 	
 }
 ?>

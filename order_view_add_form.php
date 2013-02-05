@@ -9,7 +9,11 @@ require_once 'class/goods.class.php';
 require_once 'class/goods_service.class.php';
 $supplier_service=new SupplierService();
 $array_supplier=$supplier_service->getAll();
-$supplier_id=$array_supplier[0]->id;
+if(isset($_GET["supplier_id"])){
+	$supplier_id=$_GET["supplier_id"];
+}else{
+	$supplier_id=$array_supplier[0]->id;
+}
 $goods_service=new GoodsService();
 $array_goods=$goods_service->getGoodsBySupplierId($supplier_id);
  
@@ -17,7 +21,7 @@ $array_goods=$goods_service->getGoodsBySupplierId($supplier_id);
 <h3>新增采购单</h3>
 <hr class="bs-docs-separator">
 <div class="div-form ">
-<form class="form-horizontal" action="./index.php?mod=goods&action=add_post" method="post">
+<form class="form-horizontal" action="./index.php?mod=order&action=add_post" method="post">
 
        <div class="control-group">
     <label class="control-label" for="supplier_id">供应商</label>
@@ -39,11 +43,11 @@ $array_goods=$goods_service->getGoodsBySupplierId($supplier_id);
     </div>
   </div>
   <div class="control-group"> 
-  <table class="table table-bordered table-striped  table-hover table-condensed" id="table" style="width: 30%;">
-  <thead>
-    <tr><th>商品名称</th>
-   		<th>商品编号</th>
-		<th>商品数量</th>
+  <table class="table table-bordered table-striped  table-hover table-condensed" id="table" style="width: 30%; margin-left: 100px;">
+  <thead >
+    <tr><th style="width: 30%;">商品名称</th>
+   		<th style="width: 30%;">商品编号</th>
+		<th style="width: 10%;">商品数量</th>
 	</tr>
   </thead>
   <tbody>
@@ -53,11 +57,11 @@ $array_goods=$goods_service->getGoodsBySupplierId($supplier_id);
     		echo "<tr> 
     		<td>
              		 <label  class='checkbox'>
-                	 <input type='checkbox'  id='optionsCheckbox' name='goods_id[]' value='$goods->id'><a href='./index.php?mod=goods&action=detail&did=$goods->id'>$goods->goods_name</a>
+                	 <input type='checkbox'  id='goods_id' name='goods_id[]' value='$goods->id'><a href='./index.php?mod=goods&action=detail&did=$goods->id'>$goods->goods_name</a>
               </label>
             </td>
     		<td>$goods->system_number</td>
-    		<td><input class='input-small' type='text' name='goods_number[]' /></td>
+    		<td><input class='input-small' type='text' name='goods_number[]' id='goods_number' /></td>
 
       </tr>" ; };
   ?>
@@ -88,6 +92,10 @@ $array_goods=$goods_service->getGoodsBySupplierId($supplier_id);
                             return $(this).is(":visible");
                         }
                     });
+  $("#supplier_id").val(<?=$supplier_id?>);
+  $("#supplier_id").change(function(){
+			window.location.href="index.php?mod=order&action=add_get&supplier_id="+$("#supplier_id").val();
+	  });
                     
                      } );
   </script>
