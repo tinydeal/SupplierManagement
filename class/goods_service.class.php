@@ -43,6 +43,7 @@ class GoodsService{
 	public function addGoods($goods){
 		$goods_name=$goods->_get('goods_name');
 		$goods_category_id=$goods->_get('goods_category_id');
+		$system_number="sp".time();
 		$price=$goods->_get('price');
 		$size=$goods->_get('size');
 		$color=$goods->_get('color');
@@ -51,6 +52,8 @@ class GoodsService{
 		$note=$goods->_get('note');
 		$created=date('Y-m-d H:i:s');
 		$sql=sprintf("insert  into  t_goods  (goods_name,goods_category_id,price,size,color,description,website,note,created)  values ('%s','%s','%s','%s','%s','%s','%s','%s','%s')",$goods_name,$goods_category_id,$price,$size,$color,$description,$website,$note,$created);
+		
+
 		$this->g_db->Execute($sql);
 		return $this->g_db->getLastId();
 	}
@@ -78,6 +81,17 @@ class GoodsService{
 		$website=$goods->_get('website');
 		$note=$goods->_get('note');
 		$sql=sprintf("update t_goods  set goods_name='%s',goods_category_id='%s',system_number='%s',price='%s',size='%s',color='%s',description='%s',website='%s',note='%s' where id=%d",$goods_name,$goods_category_id,$system_number,$price,$size,$color,$description,$website,$note,$id);
+		
+		$oldPrice=$_SESSION['price'];
+		if($price!=$oldPrice){
+			$created=date('Y-m-d H:i:s');
+			$price_sql=sprintf("insert into t_price_change (goods_id,price,created) values(%d,'%s','%s')",$id,$price,$created);
+			$this->g_db->Execute($price_sql);
+			$insert_id=$this->g_db->getLastId();
+			require_once './class/log_service.class.php';
+			$log_service=new LogService();
+			$log_service->addLog("insert","价格变化",$insert_id);
+		}
 		return $this->g_db->Execute($sql);
 	}
 	  

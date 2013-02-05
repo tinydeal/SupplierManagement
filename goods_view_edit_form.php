@@ -20,6 +20,8 @@ $website = $goods->website;
 $note = $goods->note;
 unset ( $_SESSION ["goods"] );
 $_SESSION ['id'] = $id;
+$_SESSION ['price'] = $price;
+
 ?>
 <h3>修改产品</h3>
 <hr class="bs-docs-separator">

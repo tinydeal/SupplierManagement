@@ -18,7 +18,7 @@ if(isset($_GET['action'])){
 			require_once './class/order_service.class.php';
 			require_once 'class/order.class.php';
 			require_once 'class/code_names.class.php';
-			$order_number=time();
+			$order_number="dd".time();
 			$supplier_id=$_POST['supplier_id'];
 			$status=CodeNames::$order_status_pending_audit;
 			$note=$_POST['note'];
