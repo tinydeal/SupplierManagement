@@ -39,7 +39,7 @@ $array_goods=$goods_service->listAll($pageCurrent,$page_size);
 	</div>
 
 <table class="table table-bordered table-striped  table-hover" id="price_change">
-  <caption>XX变化趋势</caption>
+  <caption>价格变化趋势</caption>
   <thead>
       <tr>
         <th>产品名称</th>
@@ -56,11 +56,7 @@ $array_goods=$goods_service->listAll($pageCurrent,$page_size);
   </div>    
 </div>
 <script type="text/javascript">
-function getGoodsPrice(){
-  var price_table=document.getElementById('price_change');
-  while(price_table.hasChildNodes()){
-    price_table.removeChild(price_table.lastChild);
-  }
+function getGoodsPrice(){   
   var goods_name=$("#goods_id").find("option:selected").text();  
   $.ajax({
     type: "POST",
@@ -70,7 +66,7 @@ function getGoodsPrice(){
     data: {"goods_id":$('#goods_id').val(),"time_range":$('#time_range').val()},
     success:function(price_change){          
       for(var i in price_change){
-        var price_table=document.getElementById('price_change').insertRow(0);       
+        var price_table=document.getElementById('price_change').insertRow(1);       
         price_table.insertCell(0).innerHTML=goods_name;
         price_table.insertCell(1).innerHTML=price_change[i].price;
         price_table.insertCell(2).innerHTML=price_change[i].modified;
@@ -85,6 +81,10 @@ function getGoodsPrice(){
 $(document).ready(function(){
   getGoodsPrice();
   $('#goods_id').change(function(){
+    var price_table=document.getElementById('price_change');
+    while(price_table.rows.length>1){
+      price_table.deleteRow(price_table.rows.length-1);
+    }
     getGoodsPrice();
   });  
 });
