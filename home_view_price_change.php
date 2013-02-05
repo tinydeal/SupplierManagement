@@ -87,7 +87,15 @@ $(document).ready(function(){
       price_table.deleteRow(price_table.rows.length-1);
     }
     getGoodsPrice();
-  });  
+  });
+
+  $('#time_range').change(function(){
+    var price_table=document.getElementById('price_change');
+    while(price_table.rows.length>1){
+      price_table.deleteRow(price_table.rows.length-1);
+    }
+    getGoodsPrice();
+  });   
 });
   
 </script>
