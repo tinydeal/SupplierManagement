@@ -4,12 +4,17 @@
  * @data 2013-1-30
  */
 require_once './class/log_service.class.php';
+require_once 'class/code_names.class.php';
 $log_service=new LogService();
 if(isset($_GET['action'])){
 	$action=$_GET['action'];
 	switch ($action){
 		case 'ls':
-			require_once './user_view_ls.php';
+			if(strstr($_SESSION['user_permission_name'],CodeNames::$permission_name_administrator)){
+				require_once './user_view_ls.php';
+			}else {
+				header("Location: ./index.php?mod=home");
+			}
 			break;
 		case 'user_validate':
 		    if(!imageCodeCheck()){
@@ -69,52 +74,61 @@ if(isset($_GET['action'])){
 			
 			header("Location: ./login.php");
 			break;
-	
+		
 		case 'edit_get':
-			if(isset($_GET['eid'])){
-			$id=$_GET['eid'];
-			if(is_numeric($id)){
-			require_once 'class/user.class.php';
-	  		require_once 'class/user_service.class.php';
-			$user_service=new UserService();
-			$user=$user_service->getUserById($id);
-			$user=serialize($user);
-			$_SESSION['user']=$user;
-			require_once './user_view_edit_form.php';
+			if(strstr($_SESSION['user_permission_name'],CodeNames::$permission_name_administrator)){
+				if(isset($_GET['eid'])){
+					$id=$_GET['eid'];
+					if(is_numeric($id)){
+						require_once 'class/user.class.php';
+	  					require_once 'class/user_service.class.php';
+						$user_service=new UserService();
+						$user=$user_service->getUserById($id);
+						$user=serialize($user);
+						$_SESSION['user']=$user;
+						require_once './user_view_edit_form.php';
 			}else{
 				header("Location: ./index.php?mod=user&action=ls");
 			}
 			}else{
 				header("Location: ./index.php?mod=user&action=ls");
 			}
+			}else {
+				header("Location: ./index.php?mod=home");
+			}
+			
 			break;
 		case 'edit_post':
-			if(isset($_SESSION["id"])){
-				require_once 'class/user.class.php';
-	  			require_once 'class/user_service.class.php';			
-				$id=$_SESSION["id"];
-				unset($_SESSION["id"]);
-				$name=trim($_POST["name"]);
-	  			$category_name_id=trim($_POST["category_name_id"]);
-	  			$username=trim($_POST["username"]);
-	  			$telephone=trim($_POST["telephone"]);
-	  			$email=trim($_POST["email"]);
-	  			$state=trim($_POST["state"]);
-	  			$note=trim($_POST["note"]);
-	  			$user=new User($id, $name, $category_name_id, null, $username, null, $telephone, $email, $state, $note);
-	  			$user_service=new UserService();
-	  			$user_service->updateUser($user);
+			if(strstr($_SESSION['user_permission_name'],CodeNames::$permission_name_administrator)){
+				if(isset($_SESSION["id"])){
+					require_once 'class/user.class.php';
+	  				require_once 'class/user_service.class.php';			
+					$id=$_SESSION["id"];
+					unset($_SESSION["id"]);
+					$name=trim($_POST["name"]);
+	  				$category_name_id=trim($_POST["category_name_id"]);
+	  				$username=trim($_POST["username"]);
+	  				$telephone=trim($_POST["telephone"]);
+	  				$email=trim($_POST["email"]);
+	  				$state=trim($_POST["state"]);
+	  				$note=trim($_POST["note"]);
+	  				$user=new User($id, $name, $category_name_id, null, $username, null, $telephone, $email, $state, $note);
+	  				$user_service=new UserService();
+	  				$user_service->updateUser($user);
 	  			
-				$_SESSION['operation']=true;
-				$_SESSION['operation_msg']="修改人员:".$username."成功";		
+					$_SESSION['operation']=true;
+					$_SESSION['operation_msg']="修改人员:".$username."成功";		
 
-				$log_service->addLog("update","人员",$id);
+					$log_service->addLog("update","人员",$id);
 			}else{
 				$_SESSION['operation']=false;
 				$_SESSION['operation_msg']="修改人员:".$username."失败";
 				
 			}
 			header("Location: ./index.php?mod=user&action=ls");
+			}else {
+				header("Location: ./index.php?mod=home");
+			}
 			break;
 		case 'detail':
 			if(isset($_GET['did'])){
