@@ -55,9 +55,9 @@ class OrderService{
 		return $this->g_db->getLastId();
 	}
 	
-	public function addGoodsInOrder($goods_id,$goods_number,$order_id){
+	public function addGoodsInOrder($goods_id,$goods_number,$is_out_of_stock,$order_id){
 		$created=date('Y-m-d H:i:s');
-		$sql=sprintf("insert  into  t_order_goods  (order_id,goods_id,goods_number,created)  values ('%s','%s','%s','%s')",$order_id,$goods_id,$goods_number,$created);
+		$sql=sprintf("insert  into  t_order_goods  (order_id,goods_id,goods_number,is_out_of_stock,created)  values ('%s','%s',%d,%d,'%s')",$order_id,$goods_id,$goods_number,$is_out_of_stock,$created);
 		$this->g_db->Execute($sql);
 		return $this->g_db->getLastId();
 	}

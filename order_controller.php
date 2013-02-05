@@ -30,7 +30,7 @@ if(isset($_GET['action'])){
 			$log_service->addLog("insert","订单",$id);
 			
 			foreach ($goods_id as $id=>$goods_id){
-				$order_goods_id=$order_service->addGoodsInOrder($goods_id, $goods_number[$id], $order_id);
+				$order_goods_id=$order_service->addGoodsInOrder($goods_id, $goods_number[$id],0, $order_id); 
 				$log_service->addLog("insert","订单产品",$order_goods_id);
 			}
 			
@@ -134,7 +134,7 @@ if(isset($_GET['action'])){
 			require_once './class/order_service.class.php';
 			$order_service=new OrderService();
 			foreach ($goods_id as $id=>$goods_id){
-				$order_goods_id=$order_service->addGoodsInOrder($goods_id, $goods_number[$id], $order_id);
+				$order_goods_id=$order_service->addGoodsInOrder($goods_id, $goods_number[$id],0, $order_id);
 
 				$log_service->addLog("insert","订单产品",$order_goods_id);
 				header("Location: ./index.php?mod=order&action=detail&did=".$order_id);
