@@ -68,16 +68,14 @@ private $g_db;
 	}
 	
 	public function updateUser($user){
-		$id=$user->id;
-		$name=$user->name;
-	  	$category_name_id=$user->category_name_id;
-		$username=$user->username;
-		$pwd=$user->pwd;
-  		$telephone=$user->telephone;
-  		$email=$user->email;
-  		$state=$user->state;
-  		$note=$user->note;
-		$sql=sprintf("update t_user set name='%s',category_name_id='%d',username='%s',pwd='%s',telephone='%s',email='%s',state='%s',note='%s' where id=%d",$name,$category_name_id,$username,$pwd, $telephone,$email,$state,$note,$id);
+		$id=$user->_get('id');
+		$name=$user->_get('name');
+	  	$category_name_id=$user->_get('category_name_id');
+  		$telephone=$user->_get('telephone');
+  		$email=$user->_get('email');
+  		$state=$user->_get('state');
+  		$note=$user->_get('note');
+		$sql=sprintf("update t_user set name='%s',category_name_id='%d',telephone='%s',email='%s',state='%s',note='%s' where id=%d",$name,$category_name_id,$telephone,$email,$state,$note,$id);
 		return $this->g_db->Execute($sql);
 	} 
 	

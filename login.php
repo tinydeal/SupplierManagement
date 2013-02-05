@@ -63,7 +63,14 @@ if (isset ($_SESSION['error'])) {
 	        <strong>账号或密码错误</strong>
 	        </div>";
 	session_unset($_SESSION['error']);
-} 
+}
+if (isset ($_SESSION['disable'])) {
+	echo "<div class='alert fade in alert-error'>
+	        <button type='button' class='close' data-dismiss='alert' >&times;</button>
+	        <strong>账号暂时无法登陆，请等待管理员审核</strong>
+	        </div>";
+	session_unset($_SESSION['disable']);
+}  
 if (isset ($_SESSION['register'])) {
 	echo "<div class='alert fade in alert-success'>
 	        <button type='button' class='close' data-dismiss='alert' >&times;</button>

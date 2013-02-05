@@ -28,7 +28,14 @@ if(isset($_GET['action'])){
 			$user=new User(null,null,null,null,$username,$pwd,null,null,null,null);
 			$user_service=new UserService();
 			$rs=$user_service->validateUser($user);
+			$user=$user_service->getUserByUsername($username);
+			$state=$user->state;
 			
+			if(strstr($state, CodeNames::$user_state_disable)){
+				$url="./login.php";
+				$_SESSION['disable']=true;
+				header("Location: $url");
+			}else{
 			if(!$rs){
 				$url="./login.php";
 				
@@ -36,7 +43,7 @@ if(isset($_GET['action'])){
 				$_SESSION['error']=true;
 			}else{
 				$url="./index.php";
-				$user=$user_service->getUserByUsername($username);
+				
 				$_SESSION['username']=$username;
 				$_SESSION['logined_user']=serialize($user);
 				require_once 'class/personnel_category_service.class.php';
@@ -53,7 +60,9 @@ if(isset($_GET['action'])){
 				}
 				}
 	  	 	 }
+	   		
     	 	header("Location: $url");
+	   		}
 			break;
 		case 'user_register':
 			require_once 'class/user.class.php';
