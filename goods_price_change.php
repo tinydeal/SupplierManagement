@@ -4,6 +4,8 @@
  * @date 2013 2-4
  */
 require_once './class/database.class.php';
+date_default_timezone_set('PRC');
+$current_time=date('Y-m-d H:i:s');
 $goods_id = stripslashes(trim($_POST['goods_id']));
 $time_range = stripslashes(trim($_POST['time_range']));
 $g_db=Database::getInstance();
