@@ -78,7 +78,7 @@ class SupplierService{
 		return $this->g_db->Execute($sql);
 	}
 	
-	public  function listAllByKeywords($pageCurrent,$PageSize,$keywords,$sql="select t_supplier.*,t_supplier_category.supplier_category_name from t_supplier,t_supplier_category where t_supplier_category.id=t_supplier.supplier_category_id and supplier_name like "){
+	public  function listAllByKeywords($pageCurrent,$PageSize,$keywords,$sql="select t_supplier.*,t_supplier_category.supplier_category_name from t_supplier,t_supplier_category where t_supplier_category.id=t_supplier.supplier_category_id and concat (supplier_name,supplier_category_name,goods_style,goods_category) like "){
 		$sql=sprintf($sql." '%s' ","%".$keywords."%");
 		$sql=$sql." order by id desc";
 		$array_supplier=$this->g_db->getAll($sql,$pageCurrent,$PageSize);
