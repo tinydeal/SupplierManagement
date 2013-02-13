@@ -77,7 +77,6 @@ $nums=$personnel_category_service->getListRows();
       </tr>";
     }
     
-    
     ?>
       
     </tbody>

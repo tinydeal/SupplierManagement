@@ -68,14 +68,14 @@ if(isset($_GET['action'])){
 			if(strstr($_SESSION['user_permission_name'],CodeNames::$permission_name_order)||strstr($_SESSION['user_permission_name'],CodeNames::$permission_name_administrator)){
 				if(isset($_SESSION["id"])){
 					require_once './class/problem_service.class.php';
-					require_once 'class/problem.class.php';				
+					require_once 'class/problem.class.php';
 					$id=$_SESSION["id"];
 					unset($_SESSION["id"]);
 					$problem_name_category=$_POST['problem_name_category']; 
 					$supplier_id=$_POST['supplier_id']; 
 					$description=$_POST['description']; 
 					$note=$_POST['note'];
-					$problem=new Problem(null,$problem_name_category,$supplier_id,$description,$note);
+					$problem=new Problem($id,$problem_name_category,$supplier_id,$description,$note);
 					$problem_service=new ProblemService();
 					$id=$problem_service->updateProblem($problem);
 				

@@ -66,7 +66,7 @@ class ProblemService{
 		$supplier_id=$problem->_get('supplier_id');
 		$description=$problem->_get('description');
 		$note=$problem->_get('note');
-		$sql=sprintf("update t_problem  set problem_name_category='%s',supplier_id='%s',supplier_id='%s',description='%s',note='%s'  where id=%d",$problem_name_category,$supplier_id,$description,$note,$id);
+		$sql=sprintf("update t_problem  set problem_name_category='%s',supplier_id='%s',description='%s',note='%s'  where id=%d",$problem_name_category,$supplier_id,$description,$note,$id);
 		return $this->g_db->Execute($sql);
 	}
 }

@@ -19,7 +19,7 @@ $_SESSION ['id'] = $id;
 <h3>修改合作问题记录</h3>
 <hr class="bs-docs-separator">
 <div class="div-form">
-<form class="form-horizontal" action="./index.php?mod=problem&action=add_post" method="post">
+<form class="form-horizontal" action="./index.php?mod=problem&action=edit_post" method="post">
      <div class="control-group">
     <label class="control-label" for="problem_name_category">合作问题类型</label>
     <div class="controls">
