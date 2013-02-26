@@ -98,12 +98,12 @@ if (isset ($_SESSION['image_code_error'])) {
       <input type="password" id="pwd" placeholder="" name="pwd" required>
     </div>
   </div>
-    <div class="control-group">
+  <!--  <div class="control-group">
     <label class="control-label" for="input_image_code" type="text" >验证码</label>
     <div class="controls">
       <input type="text" id="input_image_code" placeholder="" name="input_image_code" required pattern="[a-zA-Z0-9_]{4}$" data-validation-pattern-message="验证码长度不对"> <img src="image.php"/>
     </div>
-  </div>
+  </div> -->
   
   <div class="control-group">
     <div class="controls">
