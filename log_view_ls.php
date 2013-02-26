@@ -83,6 +83,6 @@ $nums=$log_service->getListRows();
 </div>
 <script>
   $(function () {
-          $('#keywords').val("<?=$_GET["keywords"]?>");
+          $('#keywords').val("<?php echo $_GET["keywords"]?>");
                      } );
 </script>

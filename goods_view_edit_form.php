@@ -113,14 +113,14 @@ $_SESSION ['price'] = $price;
                             return $(this).is(":visible");
                         }
                     }); 
-                $("#goods_name").val("<?=$goods_name?>");
-                $("#goods_category_id").val("<?=$goods_category_id?>");    
-                $("#system_number").val("<?=$system_number?>");    
-                $("#price").val("<?=$price?>");    
-                $("#size").val("<?=$size?>");    
-                $("#color").val("<?=$color?>");    
-                $("#description").val("<?=$description?>");    
-                $("#website").val("<?=$website?>");    
-                $("#note").val("<?=$note?>");    
+                $("#goods_name").val("<?php echo $goods_name?>");
+                $("#goods_category_id").val("<?php echo $goods_category_id?>");    
+                $("#system_number").val("<?php echo $system_number?>");    
+                $("#price").val("<?php echo $price?>");    
+                $("#size").val("<?php echo $size?>");    
+                $("#color").val("<?php echo $color?>");    
+                $("#description").val("<?php echo $description?>");    
+                $("#website").val("<?php echo $website?>");    
+                $("#note").val("<?php echo $note?>");    
                      } );
 </script>

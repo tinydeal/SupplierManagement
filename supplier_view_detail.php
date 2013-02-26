@@ -32,7 +32,7 @@ unset($_SESSION["supplier"]);
 <div class="span12" style="margin-left: auto;margin-right: auto;">
 <h3 style="float:left">供应商信息</h3>
 <div style="float:right;margin-top:12px">
-<a class='btn btn-primary' href='./index.php?mod=supplier&action=edit_get&eid=<?=$id?>'>修改</a>
+<a class='btn btn-primary' href='./index.php?mod=supplier&action=edit_get&eid=<?php echo $id?>'>修改</a>
 <a class="btn" href="javascript:history.go(-1);">返回</a>
 </div>
 <table class="table table-bordered table-hover ">
@@ -43,24 +43,24 @@ unset($_SESSION["supplier"]);
 </thead>
 
 <tr>
-<td >供应商名称</td><td ><?=$supplier_name?></td>
-<td >类别</td><td ><?=$supplier_category_name?></td>
+<td >供应商名称</td><td ><?php echo $supplier_name?></td>
+<td >类别</td><td ><?php echo $supplier_category_name?></td>
 </tr>
 <tr >
-<td >批价区间</td><td ><?=$wholesale_num_min?>~<?=$wholesale_num_max?></td>
-<td >产品风格</td><td ><?=$goods_style?></td>
+<td >批价区间</td><td ><?php echo $wholesale_num_min?>~<?=$wholesale_num_max?></td>
+<td >产品风格</td><td ><?php echo $goods_style?></td>
 </tr>
 <tr >
-<td >产品属类</td><td ><?=$goods_category?></td>
-<td >图片</td><td ><?=$is_provide_pictures?></td>
+<td >产品属类</td><td ><?php echo $goods_category?></td>
+<td >图片</td><td ><?php echo $is_provide_pictures?></td>
 </tr>
 <tr >
-<td >网址</td><td ><?=$website?></td>
-<td >联系人</td><td ><?=$linkman?></td>
+<td >网址</td><td ><?php echo $website?></td>
+<td >联系人</td><td ><?php echo $linkman?></td>
 </tr>
 <tr >
-<td >手机</td><td ><?=$telephone?></td>
-<td >地址</td><td ><?=$province.$city.$village.$address_detial?></td>
+<td >手机</td><td ><?php echo $telephone?></td>
+<td >地址</td><td ><?php echo $province.$city.$village.$address_detial?></td>
 </tr>
 
 <tr>

@@ -26,24 +26,24 @@ unset($_SESSION["user"]);
 </thead>
 
 <tr>
-<td >用户名</td><td ><?=$username?></td>
-<td >人员类型</td><td ><?=$category_name?></td>
+<td >用户名</td><td ><?php echo $username?></td>
+<td >人员类型</td><td ><?php echo $category_name?></td>
 </tr>
 <tr >
-<td >姓名</td><td ><?=$name?></td>
-<td >电话</td><td ><?=$telephone?></td>
+<td >姓名</td><td ><?php echo $name?></td>
+<td >电话</td><td ><?php echo $telephone?></td>
 </tr>
 <tr >
-<td >电子邮箱</td><td ><?=$email?></td>
-<td >账号状态</td><td ><?=CodeNames::$user_state[$state]?></td>
+<td >电子邮箱</td><td ><?php echo $email?></td>
+<td >账号状态</td><td ><?php echo CodeNames::$user_state[$state]?></td>
 </tr>
 
 <tr>
-<td >备注</td><td  colspan="3"><?=$note?></td>
+<td >备注</td><td  colspan="3"><?php echo $note?></td>
 </tr>
 
 
 </table>
-<a class='btn btn-primary' href='./index.php?mod=user&action=edit_get&eid=<?=$id?>'>修改</a>
+<a class='btn btn-primary' href='./index.php?mod=user&action=edit_get&eid=<?php echo $id?>'>修改</a>
 <a   class="btn" href="javascript:history.go(-1);">返回</a>
 </div>

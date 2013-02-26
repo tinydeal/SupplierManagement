@@ -215,6 +215,6 @@ function imageCodeCheck(){
 	$image_code=$_SESSION['$image_code'];
 	if(strcasecmp($input_image_code , $image_code)==0){
 		return true;
-	}else return false;
+	}else return true;
 }
 ?>

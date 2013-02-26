@@ -145,24 +145,24 @@ $_SESSION['id']=$id;
                             return $(this).is(":visible");
                         }
                     });
-  				    $('#supplier_name').val("<?=$supplier_name?>");              
-              $('#supplier_category_name').val("<?=$supplier_category_name?>");
-              $('#wholesale_num_min').val("<?=$wholesale_num_min?>"); 
-              $('#wholesale_num_max').val("<?=$wholesale_num_max?>"); 
-              $('#goods_style').val("<?=$goods_style?>");   
-              $('#goods_category_name').val("<?=$goods_category?>"); 
-              if(<?=$is_provide_pictures?>){
+  				    $('#supplier_name').val("<?php echo $supplier_name?>");              
+              $('#supplier_category_name').val("<?php echo $supplier_category_name?>");
+              $('#wholesale_num_min').val("<?php echo $wholesale_num_min?>"); 
+              $('#wholesale_num_max').val("<?php echo $wholesale_num_max?>"); 
+              $('#goods_style').val("<?php echo $goods_style?>");   
+              $('#goods_category_name').val("<?php echo $goods_category?>"); 
+              if(<?php echo $is_provide_pictures?>){
                  $('#is_provide_pictures1').attr("checked",true);
               }else{
                 $('#is_provide_pictures0').attr("checked",true);
               } 
-              $('#website').val("<?=$website?>");              
-              $('#linkman').val("<?=$linkman?>"); 
-              $('#telephone').val("<?=$telephone?>"); 
-              $('#province').val("<?=$province?>");       
-              $('#city').val("<?=$city?>"); 
-              $('#village').val("<?=$village?>"); 
-              $('#address_detial').val("<?=$address_detial?>");  
-              $('#note').val("<?=$note?>");   
+              $('#website').val("<?php echo $website?>");              
+              $('#linkman').val("<?php echo $linkman?>"); 
+              $('#telephone').val("<?php echo $telephone?>"); 
+              $('#province').val("<?php echo $province?>");       
+              $('#city').val("<?php echo $city?>"); 
+              $('#village').val("<?php echo $village?>"); 
+              $('#address_detial').val("<?php echo $address_detial?>");  
+              $('#note').val("<?php echo $note?>");   
               });
 </script>

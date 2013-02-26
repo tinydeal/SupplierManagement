@@ -68,8 +68,8 @@ $_SESSION['id']=$id;
     <label class="control-label" for="state">状态</label>
     <div class="controls">
       <select name="state" id="state">
-			<option value="<?=CodeNames::$user_state_disable?>"><?=CodeNames::$user_state['user_state_disable']?></option>
-			<option value="<?=CodeNames::$user_state_normal?>"><?=CodeNames::$user_state['user_state_normal']?></option>
+			<option value="<?php echo CodeNames::$user_state_disable?>"><?php echo CodeNames::$user_state['user_state_disable']?></option>
+			<option value="<?php echo CodeNames::$user_state_normal?>"><?php echo CodeNames::$user_state['user_state_normal']?></option>
       </select>
     </div>
   </div>
@@ -103,12 +103,12 @@ $_SESSION['id']=$id;
                             return $(this).is(":visible");
                         }
                     });
-  $("#name").val('<?=$name?>');  
-  $("#username").val("<?=$username?>"); 
-  $("#category_name_id").val('<?=$category_name_id?>'); 
-  $("#email").val('<?=$email?>');
-  $("#telephone").val('<?=$telephone?>'); 
-  $("#state").val('<?=$state?>'); 
+  $("#name").val('<?php echo $name?>');  
+  $("#username").val("<?php echo $username?>"); 
+  $("#category_name_id").val('<?php echo $category_name_id?>'); 
+  $("#email").val('<?php echo $email?>');
+  $("#telephone").val('<?php echo $telephone?>'); 
+  $("#state").val('<?php echo $state?>'); 
 
 					}); 
 </script>

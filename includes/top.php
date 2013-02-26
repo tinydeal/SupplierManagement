@@ -16,9 +16,9 @@ if(isset($_SESSION["logined_user"])){
 
 <ul class="nav pull-right">
 	<li id="fat-menu" class="dropdown"><a href="#" class="dropdown-toggle"
-		data-toggle="dropdown"><?= $_SESSION["username"]?><b class="caret"></b></a>
+		data-toggle="dropdown"><?php echo $_SESSION["username"]?><b class="caret"></b></a>
 	<ul class="dropdown-menu">
-		<li><a href="./index.php?mod=user&action=detail&did=<?=$id?>">个人信息</a></li>
+		<li><a href="./index.php?mod=user&action=detail&did=<?php echo $id?>">个人信息</a></li>
 		<li><a href="./index.php?mod=user&action=pwd_change_get">修改密码</a></li>
 		<li class="divider"></li>
 		<li><a href="./index.php?mod=user&action=logout">退出</a></li>

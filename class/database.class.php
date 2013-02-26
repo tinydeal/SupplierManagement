@@ -172,6 +172,7 @@ final class Database {
 		self::getErrInfo();
 		self::$querycount++;
 		$result = self::$stmt->fetchAll($type);
+		
 		self::$stmt = null;
 		return $result;
 	}

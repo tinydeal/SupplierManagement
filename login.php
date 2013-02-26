@@ -140,8 +140,8 @@ if (isset ($_SESSION['image_code_error'])) {
                  	 $(".alert").alert('close');
                  });
                  
-                 })
-                     } ); 
+                 });
+                     
                      
                      
                      

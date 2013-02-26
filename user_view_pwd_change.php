@@ -68,7 +68,7 @@ if(isset($_SESSION["logined_user"])){
                             return $(this).is(":visible");
                         }
                     });
-  $("#username").val("<?=$username?>"); 
+  $("#username").val("<?php echo $username?>"); 
 
 					}); 
 </script>

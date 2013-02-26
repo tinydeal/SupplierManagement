@@ -53,10 +53,10 @@ $array_order_goods=$order_service->getGoodsByOrderId($id);
     <label class="control-label" for="status" >订单状态</label>
     <div class="controls">
       <select name="status" id="status">
-              <option value="<?=CodeNames::$order_status_pending_audit?>"><?=CodeNames::$order_status['order_status_pending_audit']?></option>
-              <option value="<?=CodeNames::$order_status_audited?>"><?=CodeNames::$order_status['order_status_audited']?></option>
-              <option value="<?=CodeNames::$order_status_procurement?>"><?=CodeNames::$order_status['order_status_procurement']?></option>
-              <option value="<?=CodeNames::$order_status_completed?>"><?=CodeNames::$order_status['order_status_completed']?></option>
+              <option value="<?php echo CodeNames::$order_status_pending_audit?>"><?php echo CodeNames::$order_status['order_status_pending_audit']?></option>
+              <option value="<?php echo CodeNames::$order_status_audited?>"><?php echo CodeNames::$order_status['order_status_audited']?></option>
+              <option value="<?php echo CodeNames::$order_status_procurement?>"><?php echo CodeNames::$order_status['order_status_procurement']?></option>
+              <option value="<?php echo CodeNames::$order_status_completed?>"><?php echo CodeNames::$order_status['order_status_completed']?></option>
             </select>
     </div>
   </div> 
@@ -119,10 +119,10 @@ $array_order_goods=$order_service->getGoodsByOrderId($id);
                         }
                     });
   
-  $("#order_number").val(<?=$order_number?>);
-  $("#supplier_id").val(<?=$supplier_id?>);
-  $("#status").val('<?=$status?>');
-  $("#note").val('<?=$note?>');
+  $("#order_number").val("<?php echo $order_number?>");
+  $("#supplier_id").val("<?php echo $supplier_id?>");
+  $("#status").val("<?php echo $status?>");
+  $("#note").val("<?php echo $note?>");
   $("#supplier_id").change(function(){
 			return false;
 	  });

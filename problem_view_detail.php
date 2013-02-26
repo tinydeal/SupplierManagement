@@ -21,21 +21,21 @@ $_SESSION ['id'] = $id;
 </thead>
 
 <tr>
-<td >合作问题类型</td><td ><?=$problem_name_category?></td>
+<td >合作问题类型</td><td ><?php echo $problem_name_category?></td>
 </tr>
 <tr >
-<td >供应商</td><td ><?=$supplier_name?></td>
+<td >供应商</td><td ><?php echo $supplier_name?></td>
 </tr>
 <tr >
-<td >问题描述</td><td ><?=$description?></td>
+<td >问题描述</td><td ><?php echo $description?></td>
 </tr>
 
 <tr>
-<td >备注</td><td  colspan="3"><?=$note?></td>
+<td >备注</td><td  colspan="3"><?php echo $note?></td>
 </tr>
 
 
 </table>
-<a class='btn btn-primary' href='./index.php?mod=problem&action=edit_get&eid=<?=$id?>'>修改</a>
+<a class='btn btn-primary' href='./index.php?mod=problem&action=edit_get&eid=<?php echo $id?>'>修改</a>
 <a   class="btn" href="javascript:history.go(-1);">返回</a>
 </div>

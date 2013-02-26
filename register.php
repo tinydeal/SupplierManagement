@@ -81,6 +81,7 @@ $array_personnel_category=$personnel_category_service->getAll();
     <div class="controls">
 
       <button type="submit" class="btn btn-primary">提交</button>
+      <a class="btn" href="javascript:history.go(-1);">返回</a>
     </div>
   </div>
 </form>

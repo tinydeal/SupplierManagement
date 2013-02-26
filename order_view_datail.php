@@ -30,7 +30,7 @@ $array_order_goods=$order_service->getGoodsByOrderId($id);
 <div class="span12" style="margin-left: auto;margin-right: auto;">
 <h3 style="float:left">采购单信息</h3>
 <div style="float:right;margin-top:12px">
-<a class='btn btn-primary' href='./index.php?mod=order&action=edit_get&eid=<?=$id?>'>修改</a>
+<a class='btn btn-primary' href='./index.php?mod=order&action=edit_get&eid=<?php echo $id?>'>修改</a>
 <a class="btn" href="javascript:history.go(-1);">返回</a>
 </div>
 <table class="table table-bordered table-hover ">
@@ -41,15 +41,15 @@ $array_order_goods=$order_service->getGoodsByOrderId($id);
 </thead>
 
 <tr>
-<td >采购单号</td><td ><?=$order_number?></td>
-<td >供应商名称</td><td ><?=$supplier_name?></td>
+<td >采购单号</td><td ><?php echo $order_number?></td>
+<td >供应商名称</td><td ><?php echo $supplier_name?></td>
 </tr>
 
 <tr >
-<td >订单状态</td><td  colspan="3"><?=CodeNames::$order_status[$status]?></td>
+<td >订单状态</td><td  colspan="3"><?php echo CodeNames::$order_status[$status]?></td>
 </tr>
 <tr >
-<td >备注</td><td  colspan="3"><?=$note?></td>
+<td >备注</td><td  colspan="3"><?php echo $note?></td>
 </tr>
 
 </table>

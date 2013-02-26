@@ -25,9 +25,9 @@ $_SESSION['id']=$id;
     <label class="control-label" for="permission_name" >权限</label>
     <div class="controls">
       <select name="permission_name" id="permission_name">
-              <option value="<?=CodeNames::$permission_name_procurement?>">采购</option>
-              <option value="<?=CodeNames::$permission_name_order?>">产品下单</option>
-              <option value="<?=CodeNames::$permission_name_administrator?>">管理员</option>
+              <option value="<?php echo CodeNames::$permission_name_procurement?>">采购</option>
+              <option value="<?php echo CodeNames::$permission_name_order?>">产品下单</option>
+              <option value="<?php echo CodeNames::$permission_name_administrator?>">管理员</option>
             </select>
     </div>
   </div>
@@ -53,8 +53,8 @@ $_SESSION['id']=$id;
                             return $(this).is(":visible");
                         }
                     });
-  				$('#personnel_category_name').val("<?=$personnel_category_name?>");
-                $('#permission_name').val("<?=$permission_name?>");
+  				$('#personnel_category_name').val("<?php echo $personnel_category_name?>");
+                $('#permission_name').val("<?php echo $permission_name?>");
                     
                      } );
 </script>

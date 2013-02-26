@@ -42,7 +42,7 @@ $_SESSION['id']=$id;
                             return $(this).is(":visible");
                         }
                     });
-  				    $('#supplier_category_name').val("<?=$supplier_category_name?>");              
+  				    $('#supplier_category_name').val("<?php echo $supplier_category_name?>");              
                     
               });
 </script>

@@ -25,32 +25,32 @@ unset ( $_SESSION ["goods"] );
 </thead>
 
 <tr>
-<td >产品名称</td><td ><?=$goods_name?></td>
-<td >产品分类</td><td ><?=$goods_category_name?></td>
+<td >产品名称</td><td ><?php echo $goods_name?></td>
+<td >产品分类</td><td ><?php echo $goods_category_name?></td>
 </tr>
 <tr >
-<td >系统编号</td><td ><?=$system_number?></td>
-<td >价格</td><td ><?=$price?></td>
+<td >系统编号</td><td ><?php echo $system_number?></td>
+<td >价格</td><td ><?php echo $price?></td>
 </tr>
 <tr >
-<td >规格</td><td ><?=$size?></td>
-<td >颜色</td><td ><?=$color?></td>
+<td >规格</td><td ><?php echo $size?></td>
+<td >颜色</td><td ><?php echo $color?></td>
 </tr>
 
 <tr>
-<td >描述</td><td  colspan="3"><?=$description?></td>
+<td >描述</td><td  colspan="3"><?php echo $description?></td>
 </tr>
 
 <tr>
-<td >网址</td><td  colspan="3"><?=$website?></td>
+<td >网址</td><td  colspan="3"><?php echo $website?></td>
 </tr>
 
 <tr>
-<td >备注</td><td  colspan="3"><?=$note?></td>
+<td >备注</td><td  colspan="3"><?php echo $note?></td>
 </tr>
 
 
 </table>
-<a class='btn btn-primary' href='./index.php?mod=goods&action=edit_get&eid=<?=$id?>'>修改</a>
+<a class='btn btn-primary' href='./index.php?mod=goods&action=edit_get&eid=<?php echo $id?>'>修改</a>
 <a   class="btn" href="javascript:history.go(-1);">返回</a>
 </div>

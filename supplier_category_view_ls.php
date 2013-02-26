@@ -83,6 +83,6 @@ if(isset($_GET["keywords"])){
 
 <script>
   $(function () {
-  				$('#keywords').val("<?=$_GET["keywords"]?>");
+  				$('#keywords').val("<?php echo $_GET["keywords"]?>");
                      } );
 </script>

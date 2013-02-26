@@ -83,9 +83,9 @@ $_SESSION ['id'] = $id;
                             return $(this).is(":visible");
                         }
                     });
-  $("#problem_name_category").val("<?=$problem_name_category?>");
-  $("#supplier_id").val("<?=$supplier_id?>");    
-  $("#description").val("<?=$description?>");    
-  $("#note").val("<?=$note?>");     
+  $("#problem_name_category").val("<?php echo $problem_name_category?>");
+  $("#supplier_id").val("<?php echo $supplier_id?>");    
+  $("#description").val("<?php echo $description?>");    
+  $("#note").val("<?php echo $note?>");     
                      } );
 </script>

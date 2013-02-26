@@ -90,6 +90,6 @@ $nums=$goods_category_service->getListRows();
 
 <script>
   $(function () {
-  				$('#keywords').val("<?=$keywords?>"); 
+  				$('#keywords').val("<?php echo $keywords?>"); 
                      } );
 </script>

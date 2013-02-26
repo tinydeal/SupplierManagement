@@ -94,6 +94,6 @@ $nums=$user_service->getListRows();
 
 <script>
   $(function () {
-  				$('#keywords').val("<?=$keywords?>");
-                } );
+  				$('#keywords').val("<?php echo $keywords?>"); 
+                     } );
 </script>
